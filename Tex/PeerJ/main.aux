@@ -4,3 +4,235 @@
 \bibstyle{apalike}
 \citation{yao2023react,schick2023toolformer}
 \citation{10.1007/978-3-319-16086-3_16}
+\def\@LN@column{1}
+\babel@aux{english}{}
+\citation{agrawal2024vidur}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{}\protected@file@percent }
+\citation{nie2024aladdin}
+\citation{yao2023react}
+\citation{schick2023toolformer}
+\citation{pars2025,258862}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Tool-augmented LLM agents and constrained tool use}{3}{}\protected@file@percent }
+\citation{agentxpu2025}
+\citation{kwon2023pagedattention}
+\citation{agrawal2024sarathiserve}
+\citation{patke2024qlm,hong2025sola,chen2025slosserve,jitserve2025}
+\citation{tang2025scorpio,zhong2024distserve}
+\citation{sun2024llumnix}
+\citation{zhong2024distserve}
+\citation{wu2023fastserve}
+\citation{285173,autellix2025,astraea2025,augserve2025}
+\citation{chen2023frugalgpt,ong2024routellm,wang2025mixllm}
+\citation{liu1973scheduling,lopez2004edfmp}
+\citation{neely2010stochastic}
+\citation{whitt2006fluid,ibrahim2009delay,abandonmentra}
+\citation{lu1999case,lu2001feedback,hellerstein2004feedback}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}SLO and deadline-aware LLM serving}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Queueing/control foundations: deadlines, abandonment, feasibility, and drift}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Positioning}{4}{}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {3}System Model}{5}{}\protected@file@percent }
+\newlabel{sec:model}{{3}{5}{System Model}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Arrivals and deadlines}{5}{}\protected@file@percent }
+\newlabel{sec:arrivals_deadlines}{{3.1}{5}{Arrivals and deadlines}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Queueing dynamics and timing}{5}{}\protected@file@percent }
+\newlabel{sec:queue_dynamics}{{3.2}{5}{Queueing dynamics and timing}{subsection.3.2}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Worst-Case Blocking Delay under Non-Preemption}{6}{}\protected@file@percent }
+\newlabel{sec:worst_case_blocking}{{3.3}{6}{Worst-Case Blocking Delay under Non-Preemption}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Inference modes and service times}{6}{}\protected@file@percent }
+\newlabel{sec:modes_service}{{3.4}{6}{Inference modes and service times}{subsection.3.4}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {paragraph}{Estimated mean service times}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Multi-resolution utility model}{7}{}\protected@file@percent }
+\newlabel{sec:utility_model}{{3.5}{7}{Multi-resolution utility model}{subsection.3.5}{}}
+\newlabel{eq:on_time_utility_model}{{7}{7}{Multi-resolution utility model}{equation.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Observable state, policies, and objectives}{7}{}\protected@file@percent }
+\newlabel{sec:state_objective}{{3.6}{7}{Observable state, policies, and objectives}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Predicted wait and related quantities}{7}{}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Critical and standard task classes}{8}{}\protected@file@percent }
+\newlabel{sec:premium_extension}{{3.7}{8}{Critical and standard task classes}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}From Feasibility Gating to Context-Aware Dynamic Tool Resolution}{8}{}\protected@file@percent }
+\newlabel{sec:tfg}{{4}{8}{From Feasibility Gating to Context-Aware Dynamic Tool Resolution}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Feasibility gate}{8}{}\protected@file@percent }
+\newlabel{sec:tfg_gate}{{4.1}{8}{Feasibility gate}{subsection.4.1}{}}
+\def\@LN@column{1}
+\newlabel{eq:tfg_feasibility}{{10}{9}{Feasibility gate}{equation.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Backlog-based waiting-time estimate}{9}{}\protected@file@percent }
+\newlabel{sec:tfg_wait_est}{{4.2}{9}{Backlog-based waiting-time estimate}{subsection.4.2}{}}
+\newlabel{eq:estimate_wait}{{11}{9}{Backlog-based waiting-time estimate}{equation.11}{}}
+\newlabel{eq:avg_service_mix}{{12}{9}{Backlog-based waiting-time estimate}{equation.12}{}}
+\newlabel{eq:ftc_affine_rule}{{13}{9}{Backlog-based waiting-time estimate}{equation.13}{}}
+\newlabel{thm:ftc_structure}{{4.1}{9}{Backlog-based waiting-time estimate}{theorem.4.1}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {paragraph}{Multi-mode extension}{10}{}\protected@file@percent }
+\newlabel{sec:ftc_multimode}{{4.2}{10}{Multi-mode extension}{theorem.4.1}{}}
+\newlabel{thm:ftc_multimode}{{4.2}{10}{Multi-mode extension}{theorem.4.2}{}}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Oracle threshold benchmark and relationship to bang-bang control}{13}{}\protected@file@percent }
+\newlabel{sec:oracle_fbb}{{4.3}{13}{Oracle threshold benchmark and relationship to bang-bang control}{subsection.4.3}{}}
+\def\@LN@column{1}
+\newlabel{thm:oracle_threshold}{{4.3}{14}{Oracle threshold benchmark and relationship to bang-bang control}{theorem.4.3}{}}
+\newlabel{prop:fbb_special_case}{{4.4}{14}{Oracle threshold benchmark and relationship to bang-bang control}{theorem.4.4}{}}
+\newlabel{prop:region_nesting}{{4.5}{14}{Oracle threshold benchmark and relationship to bang-bang control}{theorem.4.5}{}}
+\def\@LN@column{1}
+\newlabel{cor:negative_margin_crossover}{{4.6}{15}{Oracle threshold benchmark and relationship to bang-bang control}{theorem.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Backlog-estimator refinement and compression error}{15}{}\protected@file@percent }
+\newlabel{sec:ftc_estimator_refinement}{{4.4}{15}{Backlog-estimator refinement and compression error}{subsection.4.4}{}}
+\newlabel{prop:compression_error}{{4.7}{15}{Backlog-estimator refinement and compression error}{theorem.4.7}{}}
+\def\@LN@column{1}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces FTC (Firm-Deadline Tool Control) at request arrival (defaults: $\rho =0.55$, $\varepsilon =0$).}}{16}{}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{alg:tfg}{{1}{16}{Algorithm}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Algorithm}{16}{}\protected@file@percent }
+\newlabel{sec:tfg_algorithm}{{4.5}{16}{Algorithm}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Parameterization and operating point}{16}{}\protected@file@percent }
+\newlabel{sec:tfg_params}{{4.6}{16}{Parameterization and operating point}{subsection.4.6}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Context-Aware Dynamic Tool Resolution (CADTR)}{17}{}\protected@file@percent }
+\newlabel{sec:cadtr}{{4.7}{17}{Context-Aware Dynamic Tool Resolution (CADTR)}{subsection.4.7}{}}
+\newlabel{eq:cadtr_eps_shift}{{14}{17}{Context-Aware Dynamic Tool Resolution (CADTR)}{equation.14}{}}
+\newlabel{eq:cadtr_feasibility}{{15}{17}{Context-Aware Dynamic Tool Resolution (CADTR)}{equation.15}{}}
+\def\@LN@column{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Symbols used by CADTR (Algorithm~\ref {alg:cadtr}).}}{18}{}\protected@file@percent }
+\newlabel{tab:cadtr_symbols}{{1}{18}{Context-Aware Dynamic Tool Resolution (CADTR)}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Baseline Policies}{18}{}\protected@file@percent }
+\newlabel{sec:baselines}{{5}{18}{Baseline Policies}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}FTC* (tuned FTC baseline)}{18}{}\protected@file@percent }
+\newlabel{sec:baseline_ftcstar}{{5.1}{18}{FTC* (tuned FTC baseline)}{subsection.5.1}{}}
+\def\@LN@column{1}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces CADTR (Context-Aware Dynamic Tool Resolution) at request arrival.}}{19}{}\protected@file@percent }
+\newlabel{alg:cadtr}{{2}{19}{Context-Aware Dynamic Tool Resolution (CADTR)}{algorithm.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}TTL-feasibility bang-bang (F-BB)}{19}{}\protected@file@percent }
+\newlabel{sec:baseline_fbb}{{5.2}{19}{TTL-feasibility bang-bang (F-BB)}{subsection.5.2}{}}
+\newlabel{eq:baseline_ttl_bangbang}{{16}{19}{TTL-feasibility bang-bang (F-BB)}{equation.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Mode-Aware Oracle}{19}{}\protected@file@percent }
+\newlabel{sec:baseline_mode_aware}{{5.3}{19}{Mode-Aware Oracle}{subsection.5.3}{}}
+\newlabel{eq:mode_aware_wait}{{17}{19}{Mode-Aware Oracle}{equation.17}{}}
+\def\@LN@column{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Information requirements and decision logic of evaluated policies.}}{20}{}\protected@file@percent }
+\newlabel{tab:info_requirements}{{2}{20}{Summary of information requirements}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Myopic CDF Oracle}{20}{}\protected@file@percent }
+\newlabel{sec:baseline_cdf_oracle}{{5.4}{20}{Myopic CDF Oracle}{subsection.5.4}{}}
+\newlabel{eq:cdf_oracle}{{18}{20}{Myopic CDF Oracle}{equation.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Summary of information requirements}{20}{}\protected@file@percent }
+\newlabel{sec:baseline_summary}{{5.5}{20}{Summary of information requirements}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Setup}{20}{}\protected@file@percent }
+\newlabel{sec:exp_setup}{{6}{20}{Experimental Setup}{section.6}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Discrete-event simulator}{21}{}\protected@file@percent }
+\newlabel{sec:simulator}{{6.1}{21}{Discrete-event simulator}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Empirical service-time traces}{21}{}\protected@file@percent }
+\newlabel{sec:service_traces}{{6.2}{21}{Empirical service-time traces}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual paired measurements}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Deadline (TTL) regimes}{21}{}\protected@file@percent }
+\newlabel{sec:ttl_model}{{6.3}{21}{Deadline (TTL) regimes}{subsection.6.3}{}}
+\newlabel{eq:ttl_clipped_normal}{{19}{21}{Deadline (TTL) regimes}{equation.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Rationale and static-TTL sensitivity}{21}{}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Deadline (TTL) regimes used in experiments: $\delta _k\sim \mathcal  {N}(\mu _\delta ,\sigma _\delta ^2)$}}{22}{}\protected@file@percent }
+\newlabel{tab:ttl_regimes}{{3}{22}{Deadline (TTL) regimes}{table.3}{}}
+\newlabel{eq:ttl_static}{{20}{22}{Rationale and static-TTL sensitivity}{equation.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Utility generation}{22}{}\protected@file@percent }
+\newlabel{sec:utility_generation}{{6.4}{22}{Utility generation}{subsection.6.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Critical-task utility scaling}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Policy parameters and hyperparameter selection}{22}{}\protected@file@percent }
+\newlabel{sec:hyperparams}{{6.5}{22}{Policy parameters and hyperparameter selection}{subsection.6.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{FTC and CADTR defaults}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baseline parameters}{22}{}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {paragraph}{Lambda sweep}{23}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Trace-generation system and LLM configuration}{23}{}\protected@file@percent }
+\newlabel{sec:trace_system}{{6.6}{23}{Trace-generation system and LLM configuration}{subsection.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Metrics}{23}{}\protected@file@percent }
+\newlabel{sec:metrics}{{6.7}{23}{Metrics}{subsection.6.7}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Reproducibility}{24}{}\protected@file@percent }
+\newlabel{sec:repro}{{6.8}{24}{Reproducibility}{subsection.6.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Data preprocessing}{24}{}\protected@file@percent }
+\newlabel{sec:preprocessing}{{6.9}{24}{Data preprocessing}{subsection.6.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.10}Use of AI-assisted tools}{24}{}\protected@file@percent }
+\newlabel{sec:ai_tools}{{6.10}{24}{Use of AI-assisted tools}{subsection.6.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{24}{}\protected@file@percent }
+\newlabel{sec:results}{{7}{24}{Results}{section.7}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Critical-task protection}{25}{}\protected@file@percent }
+\newlabel{sec:results_hero}{{7.1}{25}{Critical-task protection}{subsection.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Overall utility and miss rate}{25}{}\protected@file@percent }
+\newlabel{sec:results_utility}{{7.2}{25}{Overall utility and miss rate}{subsection.7.2}{}}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Critical task miss rate vs.\ arrival rate $\lambda $. CADTR maintains a flat ${\sim }3.5\%$ miss rate while both oracle baselines degrade to $11\text  {--}14\%$ under load.}}{26}{}\protected@file@percent }
+\newlabel{fig:hero_graph}{{1}{26}{Critical-task protection}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Empirical service-time distributions}{26}{}\protected@file@percent }
+\newlabel{sec:results_ecdf}{{7.3}{26}{Empirical service-time distributions}{subsection.7.3}{}}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Strategic tool usage on critical tasks vs.\ $\lambda $. CADTR dynamically throttles from 41\% to 5\%, while oracles remain at ${\sim }9\%$ at high load.}}{27}{}\protected@file@percent }
+\newlabel{fig:shield_mechanism}{{2}{27}{Critical-task protection}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Overall mean realized utility vs.\ $\lambda $. CADTR maintains competitive system utility while providing superior critical-task protection.}}{28}{}\protected@file@percent }
+\newlabel{fig:overall_utility}{{3}{28}{Overall utility and miss rate}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Overall deadline miss rate vs.\ $\lambda $ across all task classes.}}{28}{}\protected@file@percent }
+\newlabel{fig:overall_mr}{{4}{28}{Overall utility and miss rate}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Performance at representative load points ($\lambda \in \{0.03, 0.11, 0.19\}$). Critical miss rate (Crit.\ MR), overall miss rate (Ovr.\ MR), overall utility (Ovr.\ Util.), and Strategic usage fraction on critical tasks (Crit.\ Strat.\%). Best critical MR in \textbf  {bold}.}}{29}{}\protected@file@percent }
+\newlabel{tab:lambda_sweep}{{4}{29}{Overall utility and miss rate}{table.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Empirical ECDF of service times for Tactical (FAST) and Strategic (SLOW) pipelines across three counterfactually measured model backends. In each panel, the Strategic pipeline is stochastically slower, supporting the multi-resolution tool abstraction.}}{29}{}\protected@file@percent }
+\newlabel{fig:ecdf_fast_slow}{{5}{29}{Empirical service-time distributions}{figure.5}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion}{30}{}\protected@file@percent }
+\newlabel{sec:discussion}{{8}{30}{Discussion}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Limitations and extensions}{30}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{30}{}\protected@file@percent }
+\newlabel{conclusion}{{9}{30}{Conclusion}{section.9}{}}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\newlabel{sec:data}{{9}{32}{}{section.9}{}}
+\bibdata{references}
+\bibcite{agrawal2024vidur}{{1}{2024a}{{Agrawal et~al.}}{{}}}
+\bibcite{agrawal2024sarathiserve}{{2}{2024b}{{Agrawal et~al.}}{{}}}
+\bibcite{chen2023frugalgpt}{{3}{2023}{{Chen et~al.}}{{}}}
+\bibcite{chen2025slosserve}{{4}{2025}{{Chen et~al.}}{{}}}
+\bibcite{258862}{{5}{2020}{{Gujarati et~al.}}{{}}}
+\bibcite{hellerstein2004feedback}{{6}{2004}{{Hellerstein et~al.}}{{}}}
+\bibcite{hong2025sola}{{7}{2025}{{Hong et~al.}}{{}}}
+\bibcite{ibrahim2009delay}{{8}{2009}{{Ibrahim and Whitt}}{{}}}
+\bibcite{10.1007/978-3-319-16086-3_16}{{9}{2015}{{Kluge et~al.}}{{}}}
+\bibcite{kwon2023pagedattention}{{10}{2023}{{Kwon et~al.}}{{}}}
+\bibcite{liu1973scheduling}{{11}{1973}{{Liu and Layland}}{{}}}
+\bibcite{lopez2004edfmp}{{12}{2004}{{L{\'o}pez et~al.}}{{}}}
+\bibcite{lu2001feedback}{{13}{2002}{{Lu et~al.}}{{}}}
+\bibcite{autellix2025}{{14}{2025}{{Luo}}{{}}}
+\bibcite{neely2010stochastic}{{15}{2010}{{Neely}}{{}}}
+\bibcite{nie2024aladdin}{{16}{2024}{{Nie et~al.}}{{}}}
+\bibcite{abandonmentra}{{17}{2002}{{O.~Garnett}}{{}}}
+\bibcite{ong2024routellm}{{18}{2024}{{Ong et~al.}}{{}}}
+\bibcite{patke2024qlm}{{19}{2024}{{Patke et~al.}}{{}}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\hspace  *{-\tocsep }References}{33}{}\protected@file@percent }
+\bibcite{schick2023toolformer}{{20}{2023}{{Schick et~al.}}{{}}}
+\bibcite{lu1999case}{{21}{1999}{{Stankovic et~al.}}{{}}}
+\bibcite{sun2024llumnix}{{22}{2024}{{Sun et~al.}}{{}}}
+\bibcite{tang2025scorpio}{{23}{2025}{{Tang et~al.}}{{}}}
+\bibcite{pars2025}{{24}{2025}{{Tao}}{{}}}
+\bibcite{wang2025mixllm}{{25}{2025}{{Wang et~al.}}{{}}}
+\bibcite{astraea2025}{{26}{2025a}{{Wang}}{{}}}
+\bibcite{augserve2025}{{27}{2025b}{{Wang}}{{}}}
+\bibcite{agentxpu2025}{{28}{2025}{{Wei}}{{}}}
+\bibcite{whitt2006fluid}{{29}{2006}{{Whitt}}{{}}}
+\bibcite{wu2023fastserve}{{30}{2023}{{Wu et~al.}}{{}}}
+\bibcite{yao2023react}{{31}{2023}{{Yao et~al.}}{{}}}
+\bibcite{285173}{{32}{2023}{{Zhang et~al.}}{{}}}
+\bibcite{jitserve2025}{{33}{2025}{{Zhang}}{{}}}
+\bibcite{zhong2024distserve}{{34}{2024}{{Zhong et~al.}}{{}}}
+\def\@LN@column{1}
+\ttl@finishall
+\newlabel{LastPage}{{9}{34}{}{section.9}{}}
+\gdef\lastpage@lastpage{34}
+\gdef\lastpage@lastpageHy{}
+\gdef \@abspage@last{34}

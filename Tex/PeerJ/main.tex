@@ -19,6 +19,10 @@
 \usepackage{url}
 \usepackage{mathtools}
 
+% One blank line of vertical space between paragraphs.
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -33,40 +37,36 @@
 
 
 \begin{abstract}
-Autonomous agents that augment their reasoning with external tools face a
-deadline-constrained orchestration problem: invoking a tool-rich
-\emph{Strategic} pipeline can improve decision quality, but it also
-increases latency, variability, and the risk of catastrophic deadline
-failure.  We formalize this setting as a non-preemptive single-server
-queue with firm deadlines and a multi-resolution tool menu comprising a
-fast \emph{Tactical} mode (base survival utility) and a slower
-\emph{Strategic} mode (survival plus an intelligence bonus).  Missing a
-deadline yields zero utility---a catastrophic outcome in
-mission-critical applications.
+Autonomous agents that use external tools face a deadline-constrained
+orchestration problem: invoking the slower, more capable \emph{Strategic}
+pipeline can improve decision quality, but it increases latency and
+variability and raises the risk of missing deadlines. We formalize this
+setting as a non-preemptive single-server queue with firm deadlines and
+two execution modes: a fast \emph{Tactical} mode that earns a base
+utility, and a slower \emph{Strategic} mode that earns the base utility
+plus a quality bonus. A missed deadline yields zero utility.
 
 We first establish \emph{Firm-Deadline Tool Control (FTC)}, a
-feasibility-gating foundation whose exact monotone threshold structure
-we prove in estimated backlog, deadline budget, and time-margin
-parameter~$\varepsilon$, including a multi-mode generalization to
-arbitrarily many tool tiers.  We then introduce \emph{Context-Aware
-Dynamic Tool Resolution (CADTR)}, which extends FTC with event-driven
-dynamic risk adaptation: upon detecting a critical event, CADTR
-applies a context-dependent $\varepsilon$-shift that tightens the
-feasibility budget, dynamically sacrificing the Strategic intelligence
-bonus to maximize physical survival probability.
+feasibility-gating policy whose exact monotone threshold structure we
+prove in estimated backlog, deadline budget, and time-margin
+parameter~$\varepsilon$, including a generalization to arbitrarily many
+ordered tool tiers. We then introduce \emph{Context-Aware Dynamic Tool
+Resolution (CADTR)}, which extends FTC with event-driven risk adaptation:
+on a critical event, CADTR applies a priority-dependent $\varepsilon$-shift
+that tightens the feasibility budget and biases the decision toward the
+Tactical mode to protect on-time completion.
 
-We evaluate CADTR against two reviewer-motivated oracle baselines---a
-Mode-Aware Oracle with exact per-task queue-wait knowledge, and a
-Myopic CDF Oracle that maximizes expected on-time utility via Gaussian
-CDF approximation---both of which possess strictly more queue-state information
-than CADTR.  In trace-driven discrete-event simulations calibrated
-with three LLM backends (Llama~3.1, Qwen~2.5~7B Instruct,
-Mistral~7B Instruct) under threat-burst scenarios (25\% critical
-tasks, arrival rate~$\lambda$ swept from 0.03 to 0.19\,req/s), the
-mathematically optimal oracles drop up to ${\sim}14\%$ of critical
-tasks, whereas CADTR maintains a practically flat
-${\sim}3.5\%$ critical miss rate by dynamically throttling Strategic
-tool usage from 41\% down to 5\% as load increases.
+We evaluate CADTR against two oracle baselines---a Mode-Aware Oracle with
+exact per-task queue-wait knowledge, and a Myopic CDF Oracle that maximizes
+expected on-time utility via a Gaussian CDF approximation---both of which
+use strictly more queue-state information than CADTR. In trace-driven
+discrete-event simulations calibrated with three LLM backends (Llama~3.1,
+Qwen~2.5~7B Instruct, Mistral~7B Instruct), under threat-burst scenarios
+with 25\% critical tasks and arrival rate~$\lambda$ swept from 0.03 to
+0.19\,req/s, the oracles drop up to ${\sim}14\%$ of critical tasks, whereas
+CADTR maintains a practically flat ${\sim}3.5\%$ critical miss rate by
+throttling Strategic-mode usage on critical tasks from 41\% to 5\% as load
+increases.
 \end{abstract}
 
 \begin{document}
@@ -76,59 +76,19 @@ tool usage from 41\% down to 5\% as load increases.
 \thispagestyle{empty}
 
 \section{Introduction}
-Autonomous agents increasingly augment their reasoning with external tools---calculators, retrieval engines, code executors, and structured APIs---to compensate for the limitations of pure model inference~\cite{yao2023react,schick2023toolformer}. While tool augmentation improves decision quality, it fundamentally changes the serving problem: it turns a single inference into a multi-stage pipeline with external dependencies, higher latency, and substantially more variance. In mission-critical applications---real-time monitoring, autonomous operations, and safety-constrained systems---this variability is not merely inconvenient; a missed deadline can mean catastrophic failure~\cite{10.1007/978-3-319-16086-3_16}.
+Autonomous agents increasingly use external tools---calculators, retrieval engines, code executors, and structured APIs---to compensate for the limitations of pure model inference~\cite{yao2023react,schick2023toolformer}. Tool use improves decision quality, but it changes the serving problem: a single inference becomes a multi-stage pipeline with external dependencies, higher latency, and substantially more variance. In mission-critical applications such as real-time monitoring, autonomous operation, and safety-constrained systems, this variability is consequential, because a missed deadline can leave a task without a usable result~\cite{10.1007/978-3-319-16086-3_16}.
 
-We study this as a \emph{multi-resolution tool orchestration} problem. Each arriving task must be routed to one of two pipelines: a fast \emph{Tactical} mode that provides base survival utility at low latency, or a slower \emph{Strategic} mode that adds an intelligence bonus (e.g., enriched telemetry, audit logging, deeper contextual reasoning) at the cost of higher and more variable service time.  Missing a deadline yields zero utility---a firm, catastrophic outcome.  The orchestrator's challenge is to maximize the aggregate utility delivered on time while protecting critical tasks under congestion.
+We study this as a \emph{multi-resolution tool orchestration} problem. Each arriving task is routed to one of two pipelines: a fast \emph{Tactical} mode that earns a base utility at low latency, or a slower \emph{Strategic} mode that earns a higher utility at the cost of higher and more variable service time. A missed deadline yields zero utility. The orchestrator must maximize the utility delivered on time while protecting critical tasks under congestion.
 
-\noindent\textbf{Novelty relative to classic admission control.}
-Classical deadline scheduling and admission control assume that a job's service requirement is fixed once admitted. In tool-augmented serving, the orchestrator can \emph{shape the service-time distribution} before execution by selecting a tool-permission profile, trading utility for latency in a way that is directly coupled to queue state. Crucially, classical methods lack \emph{event-level semantic awareness}: they cannot differentiate between a routine task and a mission-critical one. Our main contribution, CADTR, introduces exactly this dimension---a context-dependent risk adaptation that tightens the feasibility budget for critical events, a mechanism with no analogue in standard admission control or feasibility scheduling.
+Classical deadline scheduling and admission control assume that a job's service requirement is fixed once admitted. In tool-augmented serving, the orchestrator can instead \emph{shape the service-time distribution} before execution by selecting a tool-permission profile, trading utility for latency in a way that is coupled to queue state. Classical methods are also semantically blind, treating a routine task and a mission-critical task identically. CADTR adds exactly this missing dimension---a context-dependent risk adaptation that tightens the feasibility budget for critical events---which has no analogue in standard admission control or feasibility scheduling.
 
-\subsection{From FTC to CADTR}
-We first establish \emph{Firm-Deadline Tool Control (FTC)}, an arrival-epoch
-feasibility-gating policy that selects between the Strategic (\textsc{slow})
-and Tactical (\textsc{fast}) tool pipelines based on predicted deadline
-feasibility. FTC estimates the waiting time implied by (i) residual in-service
-work and (ii) queued backlog, then applies a feasibility test that compares
-the predicted completion time of the Strategic pipeline against the request
-deadline budget. A single multiplicative time-margin factor,
-$\varepsilon$, relaxes or tightens this test, yielding an interpretable
-operating-point parameter for trading on-time utility against deadline-miss
-rate without changing the underlying model or tool stack.
+We first establish \emph{Firm-Deadline Tool Control (FTC)}, an arrival-epoch feasibility-gating policy that selects between the Strategic and Tactical pipelines based on predicted deadline feasibility. FTC estimates the waiting time implied by residual in-service work and queued backlog, then tests whether the predicted completion time of the Strategic pipeline fits within the request deadline budget. A single time-margin factor~$\varepsilon$ relaxes or tightens this test, giving an interpretable operating point that trades on-time utility against deadline-miss rate without changing the underlying model or tool stack. We then introduce \emph{Context-Aware Dynamic Tool Resolution (CADTR)}, which extends FTC with event-driven risk adaptation. When a critical event arrives, CADTR applies a context-dependent $\varepsilon$-shift that tightens the feasibility budget and biases the policy toward the Tactical mode; for standard events it behaves identically to FTC. This single additive shift, conditioned on event priority, shields critical tasks under threat-burst load where oracle baselines with more queue-state information do not.
 
-We then introduce \emph{Context-Aware Dynamic Tool Resolution (CADTR)}, which extends FTC with \emph{event-driven dynamic risk adaptation}. When a critical (high-priority) event arrives, CADTR applies a context-dependent $\varepsilon$-shift that tightens the feasibility budget, biasing the policy toward the Tactical tool and dynamically sacrificing the intelligence bonus to strictly bound the probability of physical failure. For standard events, CADTR behaves identically to FTC. This minimal mechanism---a single additive shift conditioned on event priority---has an outsized effect: under threat-burst scenarios, it shields critical tasks where mathematically optimal oracle baselines fail catastrophically.
+We evaluate orchestration policies with discrete-event simulation driven by empirical end-to-end latency traces collected from a tool-augmented LLM agent. For each prompt we execute both modes, yielding paired samples that reduce routing-induced selection bias and enable trace-driven evaluation without a parametric latency model~\cite{agrawal2024vidur}. Because FTC consumes only calibrated mode-wise latency summaries rather than model-specific internals, the framework can be re-instantiated on another tool-augmented stack by recollecting traces under the corresponding fast/slow profiles.
 
-\subsection{Trace-driven performance evaluation}
-To evaluate orchestration policies under realistic latency variability,
-we use discrete-event simulation driven by empirical end-to-end latency
-traces collected from a tool-augmented LLM agent. In addition to standard
-mode-wise trace collection, we perform counterfactual measurements
-by executing the same prompt under both modes, yielding paired
-samples that reduce routing-induced selection bias. This enables
-trace-driven evaluation without requiring a parametric latency
-model, aligning with recent interest in simulation frameworks
-for LLM inference that support controlled studies of queueing and
-scheduling policies under realistic variability~\cite{agrawal2024vidur}.
-Because FTC consumes only calibrated mode-wise latency summaries rather
-than model-specific internals, the same evaluation framework can be
-re-instantiated on another tool-augmented LLM stack by recollecting traces
-under the corresponding fast/slow execution profiles.
+\noindent\textbf{Contributions.} This paper makes four contributions. First, we formalize deadline-constrained tool-augmented inference as a non-preemptive single-server queue with firm deadlines and a multi-resolution utility model in which the Tactical mode earns a base utility, the Strategic mode earns the base utility plus a quality bonus, and a missed deadline yields zero utility. Second, we introduce FTC, a backlog-aware feasibility-gating policy, and prove that it has an exact monotone threshold structure in estimated backlog, deadline budget, and time-margin~$\varepsilon$ (Theorem~\ref{thm:ftc_structure}), which extends to arbitrarily many ordered tool tiers (Theorem~\ref{thm:ftc_multimode}). Third, we introduce CADTR, which extends FTC with a priority-dependent~$\varepsilon$-shift that shields critical tasks under threat-burst load. Fourth, we evaluate CADTR against a Mode-Aware Oracle and a Myopic CDF Oracle---both with strictly more queue-state knowledge---and show that under a nine-point load sweep with 25\% critical tasks the oracles drop up to ${\sim}14\%$ of critical tasks while CADTR maintains ${\sim}3.5\%$.
 
-Beyond the two-mode formulation, we also establish in Theorem 4.2
-that the same feasibility logic extends to a finite ordered family
-of execution modes, preserving an exact threshold characterization
-of the selected mode.
-\subsection{Contributions}
-\noindent\textbf{Contributions.} This paper makes five contributions:
-\begin{itemize}
-  \item \textbf{Model:} We formalize deadline-constrained tool-augmented inference as a non-preemptive single-server queue with firm deadlines and a physically grounded multi-resolution utility model: Tactical tools provide base survival utility, Strategic tools add an intelligence bonus, and missed deadlines are catastrophic (zero utility).
-  \item \textbf{FTC foundation:} We introduce Firm-Deadline Tool Control (FTC), a backlog-aware feasibility-gating policy that selects among multi-resolution tool pipelines at the arrival epoch.
-  \item \textbf{Formal results:} We prove that FTC has an exact monotone threshold structure in estimated backlog, deadline budget, and time-margin~$\varepsilon$ (Theorem~\ref{thm:ftc_structure}), and that this structure extends to arbitrarily many ordered tool tiers (Theorem~\ref{thm:ftc_multimode}).
-  \item \textbf{CADTR:} We introduce Context-Aware Dynamic Tool Resolution (CADTR), which extends FTC with event-driven dynamic risk adaptation via a priority-dependent~$\varepsilon$-shift that shields critical tasks under threat-burst scenarios.
-  \item \textbf{Oracle benchmarking:} We evaluate CADTR against a Mode-Aware Oracle (exact per-task queue-wait knowledge) and a Myopic CDF Oracle (expected-utility maximization via Gaussian CDF)---both with perfect queue-state knowledge. Under a nine-point load sweep with 25\% critical tasks, the oracles drop up to ${\sim}14\%$ of critical tasks while CADTR maintains ${\sim}3.5\%$.
-\end{itemize}
-
-\subsection{Paper organization}
-Section~2 reviews related work. Section~3 presents the system model, including the multi-resolution utility model. Section~4 defines FTC, establishes its structural properties, and introduces the CADTR extension. Section~5 describes the baseline policies, including the two oracle baselines. Section~6 details the trace-driven simulation and experimental methodology. Section~7 reports results, Section~8 discusses scope and deployment implications, and Section~9 concludes.
+The remainder of the paper reviews related work (Section~\ref{sec:related_work}), presents the system model (Section~\ref{sec:model}), develops FTC and CADTR with their formal properties (Section~\ref{sec:tfg}), describes the baseline and oracle policies (Section~\ref{sec:baselines}), details the trace-driven methodology (Section~\ref{sec:exp_setup}), and reports results (Section~\ref{sec:results}) before discussion (Section~\ref{sec:discussion}) and conclusions.
 
 
 \section{Related Work}
@@ -139,34 +99,20 @@ Our work sits at the intersection of (i) tool-augmented LLM agents, (ii) SLO/dea
 \subsection{Tool-augmented LLM agents and constrained tool use}
 Tool-augmented agents motivate our abstraction of multiple inference modes with different quality--latency profiles. ReAct popularized interleaving LM reasoning with external actions, establishing a widely used pattern for tool-using LLM systems~\cite{yao2023react}. Toolformer demonstrated that language models can learn to invoke tools to improve downstream performance~\cite{schick2023toolformer}. These works primarily study \emph{content-level} decisions---when and how to call tools to solve a task---and typically optimize task success or answer quality \cite{pars2025, 258862}. Existing methods reason about correctness; FTC reasons about schedulability.
 
-Our approach is complementary: it assumes that tool-rich inference improves expected utility but increases latency and variance, and it controls \emph{whether} a request should be admitted to a tool-rich pipeline given the current backlog and the request time budget. Beyond this feasibility gate, CADTR adds a \emph{context-dependent} dimension: the safety margin adapts per-event based on criticality, a mechanism absent from existing tool-augmented agent frameworks.
+Our approach is complementary: it assumes that the tool-augmented inference mode improves expected utility but increases latency and variance, and it controls \emph{whether} a request should be admitted to that mode given the current backlog and the request time budget. Beyond this feasibility gate, CADTR adds a \emph{context-dependent} dimension: the safety margin adapts per-event based on criticality, a mechanism absent from existing tool-augmented agent frameworks.
 
 \subsection{SLO and deadline-aware LLM serving}
 A rapidly growing body of systems work targets SLO attainment in LLM serving by optimizing the \emph{serving stack}---batching, token scheduling, KV (key-value)-cache/memory management, routing, and cluster-level placement \cite{agentxpu2025}.
 
-\paragraph{Kernel- and memory-level serving optimizations}
-Systems such as vLLM improve throughput and latency via efficient KV-cache memory management (PagedAttention)~\cite{kwon2023pagedattention}. These techniques reduce per-request cost but do not decide \emph{which inference pipeline} (e.g., tool-permission profile) should run under a firm request TTL.
+Kernel- and memory-level systems such as vLLM improve throughput and latency via efficient KV-cache memory management~\cite{kwon2023pagedattention}, and token-level schedulers exploit the prefill/decode phase structure through chunking and schedule-aware execution to balance throughput and tail latency~\cite{agrawal2024sarathiserve}. These techniques reduce per-request cost and control \emph{how tokens are scheduled} once a request is admitted, but they do not decide \emph{which inference pipeline} should run under a firm request TTL; FTC instead makes a mode-selection and admission decision \emph{before} execution to cap the latency variance induced by tool use.
 
-\paragraph{Prefill--decode and token-level scheduling}
-Another line of work exploits LLM phase structure (prefill vs.\ decode) to improve goodput under latency constraints, e.g., via chunking/piggybacking and schedule-aware execution that better balances throughput and tail latency~\cite{agrawal2024sarathiserve}. This class of methods controls \emph{how tokens are scheduled} once a request is admitted, whereas FTC makes a \emph{mode selection/admission} decision \emph{before} execution to cap the latency variance induced by tool use.
-
-\paragraph{Queue management and SLO-aware orchestration}
-Serving stacks increasingly incorporate explicit queue-management and SLO-driven policies to stabilize latency under interactive workloads~\cite{patke2024qlm,hong2025sola,chen2025slosserve, jitserve2025}. Recent systems further address heterogeneous SLOs with admission control and deadline-style reordering/rejection~\cite{tang2025scorpio,zhong2024distserve}. FTC is orthogonal: it \emph{selects the induced workload} by choosing between tool-permission pipelines using deadline-feasibility reasoning (queue state + measured mode latencies), and can therefore compose with these schedulers.
-
-\paragraph{Dynamic rescheduling, disaggregation, and distributed serving}
-Dynamic rescheduling and migration across model instances can reduce tail latency and improve SLO attainment under heterogeneous workloads~\cite{sun2024llumnix}. Architectural disaggregation (e.g., separating prefill and decode) further improves goodput and latency under load~\cite{zhong2024distserve}, and distributed serving frameworks aim to reduce end-to-end latency at scale~\cite{wu2023fastserve}. FTC does not change the serving architecture; it changes \emph{which pipeline} is executed given deadline feasibility.
-
-\paragraph{Augmented/agentic serving and tool-workflow scheduling}
-As tool-augmented and agentic workflows become common, serving systems increasingly optimize end-to-end workflow latency rather than single-call latency \cite{285173}, e.g., by using program- or lifecycle-aware scheduling and state management~\cite{autellix2025,astraea2025,augserve2025}. These efforts focus on scheduling \emph{within} an augmented workflow (or across its stages), whereas FTC introduces a lightweight \emph{front-door} policy that gates entry to tool-rich pipelines under firm request deadlines.
-
-\paragraph{Multi-model routing and cascades}
-A related line of work routes across multiple model options (or uses cascades) to trade cost/quality/latency, often learning routing rules from preference or quality signals~\cite{chen2023frugalgpt,ong2024routellm,wang2025mixllm}. In contrast, FTC routes between \emph{tool-permission pipelines} using \emph{deadline feasibility} derived from queue state, explicitly targeting \emph{deadline-gated} utility.
+At the orchestration level, serving stacks increasingly incorporate explicit queue-management and SLO-driven policies to stabilize latency under interactive workloads~\cite{patke2024qlm,hong2025sola,chen2025slosserve, jitserve2025}, including admission control and deadline-style reordering for heterogeneous SLOs~\cite{tang2025scorpio,zhong2024distserve}, dynamic rescheduling and migration across instances~\cite{sun2024llumnix}, architectural disaggregation of prefill and decode~\cite{zhong2024distserve}, and distributed serving at scale~\cite{wu2023fastserve}. As agentic workflows become common, serving systems also optimize end-to-end workflow latency through program- and lifecycle-aware scheduling~\cite{285173,autellix2025,astraea2025,augserve2025}, and a related line routes across multiple models or cascades to trade cost, quality, and latency~\cite{chen2023frugalgpt,ong2024routellm,wang2025mixllm}. FTC is orthogonal to all of these: it \emph{selects the induced workload} by choosing between tool-permission pipelines using deadline-feasibility reasoning over queue state and measured mode latencies, acting as a lightweight \emph{front-door} policy that composes with the schedulers above rather than replacing them.
 
 \subsection{Queueing/control foundations: deadlines, abandonment, feasibility, and drift}
 FTC is motivated by feasibility reasoning in real-time scheduling, where admission and scheduling decisions are expressed in time-budget units relative to deadlines~\cite{liu1973scheduling,lopez2004edfmp}. Our drift--penalty baseline draws on Lyapunov drift and stochastic network optimization, which balance backlog terms against reward/utility-like objectives~\cite{neely2010stochastic}. Queueing systems with abandonment emphasize overload protection, robust waiting-time estimation, and deadline-like patience constraints~\cite{whitt2006fluid, ibrahim2009delay, abandonmentra}. Finally, feedback scheduling connects control-theoretic methods to QoS targets such as miss ratio~\cite{lu1999case,lu2001feedback,hellerstein2004feedback}.
 
 \subsection{Positioning}
-Viewed through this lens, FTC is a feasibility-style admission/mode-selection policy specialized to tool-augmented inference. It converts observable congestion (queue length and residual in-service work) together with empirically measured mode latencies into a predicted waiting time, and admits tool-rich inference only when predicted feasible under the request deadline budget. CADTR extends FTC with \emph{event-driven dynamic risk adaptation}: it adjusts the feasibility margin based on event-level semantic context (e.g., critical vs.\ standard priority), a mechanism with no direct analogue in the classical scheduling, routing, or queueing literature reviewed above. This context-aware dimension distinguishes our contribution from purely load-reactive policies and from static optimization approaches that lack per-event risk adaptation.
+Viewed through this lens, FTC is a feasibility-style admission/mode-selection policy specialized to tool-augmented inference. It converts observable congestion (queue length and residual in-service work) together with empirically measured mode latencies into a predicted waiting time, and admits tool-augmented inference only when predicted feasible under the request deadline budget. CADTR extends FTC with \emph{event-driven dynamic risk adaptation}: it adjusts the feasibility margin based on event-level semantic context such as critical versus standard priority, a mechanism with no direct analogue in the classical scheduling, routing, or queueing literature reviewed above. This context-aware dimension distinguishes our contribution from purely load-reactive policies and from static optimization approaches that lack per-event risk adaptation.
 
 \section{System Model}
 \label{sec:model}
@@ -217,39 +163,39 @@ where $\epsilon_{\text{time}} \to 0$ represents an arrival immediately after ser
 \begin{equation}
 W_{\max} \ge \sup S(\textsc{slow}).
 \end{equation}
-This non-preemptive blocking delay makes it mathematically impossible to guarantee a zero deadline-miss rate (i.e., absolute physical survival) under stochastic service times, as any critical task with a deadline budget $\delta_k < S(\textsc{slow})$ arriving immediately after a Strategic task begins service will deterministically violate its deadline.
+This non-preemptive blocking delay makes it impossible to guarantee a zero deadline-miss rate under stochastic service times: any critical task with a deadline budget $\delta_k < S(\textsc{slow})$ that arrives immediately after a Strategic task begins service deterministically violates its deadline.
 
-\emph{Realism of assumptions.} The single-server abstraction captures a shared bottleneck resource (e.g., a constrained GPU/CPU pool or a serialized tool-execution stage); extending the model and policies to explicit multi-server settings is an important direction for future work.
+\emph{Realism of assumptions.} The single-server abstraction captures a shared bottleneck resource such as a constrained GPU/CPU pool or a serialized tool-execution stage; extending the model and policies to explicit multi-server settings is an important direction for future work.
 
 \subsection{Inference modes and service times}
 \label{sec:modes_service}
 
-The orchestrator selects a mode $m_k \in \mathcal{M}$ at the arrival epoch, where $\mathcal{M}=\{\textsc{fast},\textsc{slow}\}$. We refer to these as the \emph{Tactical} and \emph{Strategic} tool pipelines, respectively. The Strategic (\textsc{slow}) mode corresponds to a tool-rich pipeline---e.g., one that includes telemetry logging, enriched contextual reasoning, or full audit trails---that typically yields higher utility but has larger mean latency and variance. The Tactical (\textsc{fast}) mode restricts tool use to bare-metal execution, reducing latency at the cost of lower utility.
+The orchestrator selects a mode $m_k \in \mathcal{M}$ at the arrival epoch, where $\mathcal{M}=\{\textsc{fast},\textsc{slow}\}$. We refer to these as the \emph{Tactical} and \emph{Strategic} pipelines, respectively. The Strategic (\textsc{slow}) mode runs the more capable pipeline, which typically yields higher utility but has larger mean latency and variance. The Tactical (\textsc{fast}) mode restricts tool use to reduce latency at the cost of lower utility.
 
 Service time under mode $m$ is modeled as a random variable $S(m)$ with mode-specific distribution $F_m$. In simulation, we implement $F_m$ using empirical, end-to-end latency traces collected under each mode (Section~\ref{sec:exp_setup}), and sample $S_k(m)$ accordingly.
 
 \paragraph{Estimated mean service times}
-For policy computations that require a point estimate of service time (e.g., predicted waiting/sojourn time), we use
+For policy computations that require a point estimate of service time, such as a predicted waiting or sojourn time, we use
 $\hat{s}(m) \coloneqq \mathbb{E}[S(m)]$ to denote the \emph{estimated mean service time} under mode $m$.
 In particular, $\hat{s}(\textsc{fast})$ and $\hat{s}(\textsc{slow})$ are the estimated mean service times of the \textsc{fast} and \textsc{slow} pipelines, respectively, computed from the same mode-specific traces (Section~\ref{sec:exp_setup}).\footnote{In online deployments, $\hat{s}(m)$ can be updated via a running average or EWMA over recent completions; our experiments use offline estimates from collected traces.}
 
 \subsection{Multi-resolution utility model}
 \label{sec:utility_model}
 
-We adopt a physically grounded, firm-deadline utility model that captures the multi-resolution tool paradigm. The realized utility of request~$k$ is
+We adopt a firm-deadline utility model for the two modes. The realized utility of request~$k$ is
 \begin{equation}
 \tilde{U}_k \coloneqq U_k(m_k)\,\mathbf{1}\{c_k \le d_k\}.
 \label{eq:on_time_utility_model}
 \end{equation}
-Requests that abandon ($b_k=\infty$) or complete after the deadline contribute $\tilde{U}_k=0$, representing catastrophic failure.
+Requests that abandon ($b_k=\infty$) or complete after the deadline contribute $\tilde{U}_k=0$.
 
-The mode-specific success utility $U_k(m)$ reflects the \emph{multi-resolution tool value}:
+The mode-specific success utility $U_k(m)$ is
 \begin{itemize}
-  \item \textbf{Tactical tool} (\textsc{fast}): $U_k(\textsc{fast}) = u_{\mathrm{base}}$ --- base survival utility. The agent completes its core mission.
-  \item \textbf{Strategic tool} (\textsc{slow}): $U_k(\textsc{slow}) = u_{\mathrm{base}} + u_{\mathrm{intel}}$ --- survival plus intelligence bonus (e.g., enriched telemetry, audit trail, deeper analysis).
-  \item \textbf{Missed deadline}: $\tilde{U}_k = 0$ --- catastrophic failure.
+  \item Tactical mode (\textsc{fast}): $U_k(\textsc{fast}) = u_{\mathrm{base}}$, the base utility;
+  \item Strategic mode (\textsc{slow}): $U_k(\textsc{slow}) = u_{\mathrm{base}} + u_{\mathrm{intel}}$, the base utility plus a quality bonus $u_{\mathrm{intel}}$;
+  \item Missed deadline: $\tilde{U}_k = 0$.
 \end{itemize}
-In experiments, we use $u_{\mathrm{base}} = 1.0$ and $u_{\mathrm{intel}} = 0.5$, with a small noise term ($\sigma = 0.02$) for organic variance. This additive, physically grounded structure---where every successful task earns survival credit and Strategic tools provide a bounded bonus on top---replaces the need for ad hoc utility distributions and makes the trade-off between tool resolution and timeliness transparent.
+In experiments we set $u_{\mathrm{base}} = 1.0$ and $u_{\mathrm{intel}} = 0.5$, with a small Gaussian noise term of standard deviation $0.02$. This additive structure makes the trade-off between mode quality and timeliness transparent and avoids ad hoc utility distributions.
 
 \subsection{Observable state, policies, and objectives}
 \label{sec:state_objective}
@@ -272,7 +218,7 @@ A policy $\pi$ maps the arrival state and request attributes (including $\delta_
 \begin{equation}
 \mathrm{DMR} \coloneqq \Pr[c_k > d_k].
 \end{equation}
-Here, DMR includes both (i) abandoned (never started) and (ii) late completion (started but finished late). These metrics reflect the core trade-off in deadline-constrained tool use: higher utility from tool-rich inference versus increased miss probability due to longer service and queueing delay.
+Here, DMR includes both (i) abandoned (never started) and (ii) late completion (started but finished late). These metrics reflect the core trade-off in deadline-constrained tool use: higher utility from the Strategic mode versus increased miss probability from longer service and queueing delay.
 
 \subsection{Critical and standard task classes}
 \label{sec:premium_extension}
@@ -318,11 +264,13 @@ This explicit affine form is convenient for both implementation and analysis.
 The feasibility inequality~\eqref{eq:ftc_affine_rule} is a single affine constraint in $(R_k, Q_k, \delta_k, \varepsilon)$. Several structural properties follow immediately from this form.
 
 \noindent\textbf{Observations.}
-\begin{enumerate}
-  \item[(O1)] If $\varepsilon \le -1$, FTC selects \textsc{fast} for every arrival state, since $(1+\varepsilon)\delta_k \le 0 < \hat{s}(\textsc{slow})$.
-  \item[(O2)] For $\varepsilon > -1$, FTC defines an exact backlog threshold $B^{\ast}(\delta_k,\varepsilon) = (1+\varepsilon)\delta_k - \hat{s}(\textsc{slow})$: \textsc{slow} is selected iff $B_k \coloneqq R_k + Q_k \hat{s}^{\mathrm{avg}} \le B^{\ast}$.
-  \item[(O3)] Equivalently, for fixed $(R_k, \delta_k)$, this yields a queue threshold $q^{\ast} = \lfloor B^{\ast}/\hat{s}^{\mathrm{avg}} \rfloor$; and for fixed $(R_k, Q_k)$, a deadline threshold $\delta^{\ast} = (R_k + Q_k \hat{s}^{\mathrm{avg}} + \hat{s}(\textsc{slow}))/(1+\varepsilon)$.
-\end{enumerate}
+
+\noindent\textbf{(O1)} If $\varepsilon \le -1$, FTC selects \textsc{fast} for every arrival state, since $(1+\varepsilon)\delta_k \le 0 < \hat{s}(\textsc{slow})$.
+
+\noindent\textbf{(O2)} For $\varepsilon > -1$, FTC defines an exact backlog threshold $B^{\ast}(\delta_k,\varepsilon) = (1+\varepsilon)\delta_k - \hat{s}(\textsc{slow})$: \textsc{slow} is selected iff $B_k \coloneqq R_k + Q_k \hat{s}^{\mathrm{avg}} \le B^{\ast}$.
+
+\noindent\textbf{(O3)} Equivalently, for fixed $(R_k, \delta_k)$, this yields a queue threshold $q^{\ast} = \lfloor B^{\ast}/\hat{s}^{\mathrm{avg}} \rfloor$; and for fixed $(R_k, Q_k)$, a deadline threshold $\delta^{\ast} = (R_k + Q_k \hat{s}^{\mathrm{avg}} + \hat{s}(\textsc{slow}))/(1+\varepsilon)$.
+
 These observations confirm that FTC is an exact workload-threshold policy. The following theorem formalizes the key structural property---monotone comparative statics---which shows that FTC's behavior is directionally predictable with respect to all system parameters.
 
 \begin{theorem}[Monotonicity structure of FTC]
@@ -353,7 +301,7 @@ Combining gives the desired inequality.
 
 As residual work or queue length grows, the Strategic-tool admission region contracts monotonically; as deadline budget or the margin parameter increases, it expands monotonically. This gives FTC a clean analytical identity and clarifies why it is a stronger comparator than a pure bang-bang queue threshold: FTC switches in deadline units and depends jointly on backlog and request time budget.
 
-The binary fast/slow abstraction is the simplest nontrivial instance of deadline-aware mode gating, but the same feasibility logic is not tied to two modes. In many tool-augmented serving systems, an orchestrator may have access to a finite ordered menu of execution profiles that trade latency for capability more gradually, e.g., increasingly tool-rich or increasingly deliberate pipelines. The next theorem shows that the structural threshold property of FTC extends directly to this setting. The only change is that the scalar queue-mix parameter $\rho$ is replaced by a probability vector over modes, which induces a backlog estimate through the corresponding weighted average service-time summary.
+The binary fast/slow abstraction is the simplest nontrivial instance of deadline-aware mode gating, but the same feasibility logic is not tied to two modes. In many tool-augmented serving systems, an orchestrator may have access to a finite ordered menu of execution profiles that trade latency for capability more gradually, such as increasingly tool-augmented or increasingly deliberate pipelines. The next theorem shows that the structural threshold property of FTC extends directly to this setting. The only change is that the scalar queue-mix parameter $\rho$ is replaced by a probability vector over modes, which induces a backlog estimate through the corresponding weighted average service-time summary.
 
 \paragraph{Multi-mode extension}
 \label{sec:ftc_multimode}
@@ -390,11 +338,10 @@ m_k^\star :=
 \]
 Then the following hold.
 
-\begin{enumerate}
-\item If $\varepsilon \le -1$, then the feasible set is empty for every arrival,
+\noindent\textbf{(i)} If $\varepsilon \le -1$, then the feasible set is empty for every arrival,
 and hence $m_k^\star = 1$ for every arrival.
 
-\item If $\varepsilon > -1$, define for each mode $j$
+\noindent\textbf{(ii)} If $\varepsilon > -1$, define for each mode $j$
 \[
 B_j^\star(\delta_k,\varepsilon) := (1+\varepsilon)\delta_k - \hat{s}_j.
 \]
@@ -414,7 +361,7 @@ B_k \le B_j^\star(\delta_k,\varepsilon)
 \]
 If the feasible set is empty, the policy returns mode $1$ by convention.
 
-\item Equivalently, for fixed $(R_k,Q_k)$ and $\varepsilon > -1$, define
+\noindent\textbf{(iii)} Equivalently, for fixed $(R_k,Q_k)$ and $\varepsilon > -1$, define
 \[
 \delta_j^\star(R_k,Q_k;\varepsilon)
 :=
@@ -436,9 +383,8 @@ $j$ such that
 \]
 If no threshold is met, the policy returns mode $1$ by convention.
 
-\item On the regime $\varepsilon > -1$, the selected mode is nonincreasing in
+\noindent\textbf{(iv)} On the regime $\varepsilon > -1$, the selected mode is nonincreasing in
 $R_k$ and $Q_k$, and nondecreasing in $\delta_k$ and $\varepsilon$.
-\end{enumerate}
 
 For $J=2$, with $(\rho_1,\rho_2)=(1-\rho,\rho)$ and
 $(\hat{s}_1,\hat{s}_2)=\bigl(\hat{s}(\textsc{fast}),\hat{s}(\textsc{slow})\bigr)$, this reduces to the
@@ -460,7 +406,7 @@ or equivalently
 B_k + \hat{s}_j \le (1+\varepsilon)\delta_k.
 \]
 
-For item~1, if $\varepsilon \le -1$, then $(1+\varepsilon)\delta_k \le 0$ because
+For item~(i), if $\varepsilon \le -1$, then $(1+\varepsilon)\delta_k \le 0$ because
 $\delta_k > 0$. Moreover, since $R_k \ge 0$, $Q_k \ge 0$, and $\hat{s}_{avg} > 0$,
 \[
 B_k = R_k + Q_k \hat{s}_{avg} \ge 0,
@@ -473,7 +419,7 @@ for every $j$. Therefore no mode satisfies the feasibility inequality, so the
 feasible set is empty for every arrival. By definition, the policy then returns
 mode $1$.
 
-For item~2, assume $\varepsilon > -1$. Rearranging the feasibility condition for
+For item~(ii), assume $\varepsilon > -1$. Rearranging the feasibility condition for
 mode $j$ gives
 \[
 B_k \le (1+\varepsilon)\delta_k - \hat{s}_j = B_j^\star(\delta_k,\varepsilon).
@@ -498,7 +444,7 @@ exactly the largest feasible index, which proves the stated characterization
 for the nonempty-feasible-set case. If the feasible set is empty, the policy
 definition gives $m_k^\star=1$.
 
-For item~3, because $\varepsilon > -1$, one has $1+\varepsilon > 0$, so dividing the
+For item~(iii), because $\varepsilon > -1$, one has $1+\varepsilon > 0$, so dividing the
 same feasibility inequality by $1+\varepsilon$ is valid. Mode $j$ is feasible if
 and only if
 \[
@@ -513,7 +459,7 @@ whenever at least one threshold is met, the selected mode is the largest index
 $j$ whose TTL threshold is met. If no threshold is met, the policy definition
 gives $m_k^\star=1$.
 
-For item~4, if $R_k$ increases or $Q_k$ increases, then
+For item~(iv), if $R_k$ increases or $Q_k$ increases, then
 \[
 B_k = R_k + Q_k \hat{s}_{avg}
 \]
@@ -732,11 +678,8 @@ FTC requires mode-wise service-time summaries $\hat{s}(\textsc{fast})$ and $\hat
 \subsection{Context-Aware Dynamic Tool Resolution (CADTR)}
 \label{sec:cadtr}
 
-FTC treats every task identically: the feasibility gate uses the same $\varepsilon$ regardless of task semantics. In mission-critical deployments, however, certain events carry qualitatively higher stakes---a critical threat detection, a time-sensitive safety alert, or a high-priority autonomous action. Missing the deadline on such a task is not merely a performance degradation but a \emph{catastrophic failure}.
+FTC treats every task identically: the feasibility gate uses the same $\varepsilon$ regardless of task semantics. In mission-critical deployments, certain events carry higher stakes---a critical threat detection, a time-sensitive safety alert, or a high-priority autonomous action---and missing their deadline is especially costly. CADTR extends FTC with event-driven risk adaptation. When a critical-priority event arrives, CADTR applies a context-dependent additive shift $\Delta_{\varepsilon}^{\mathrm{crit}} < 0$ to the base $\varepsilon$, tightening the feasibility budget and biasing the policy toward the Tactical mode; for standard events it behaves identically to FTC.
 
-CADTR extends FTC with a minimal but consequential mechanism: \emph{event-driven dynamic risk adaptation}. When a critical-priority event arrives, CADTR applies a context-dependent additive shift $\Delta_{\varepsilon}^{\mathrm{crit}} < 0$ to the base $\varepsilon$, tightening the feasibility budget and biasing the policy toward the Tactical tool. For standard events, CADTR behaves identically to FTC.
-
-\paragraph{Formal mechanism}
 For request $k$ with priority class $p_k \in \{\text{critical}, \text{standard}\}$, CADTR selects the effective margin as
 \begin{equation}
 \varepsilon_k^{\mathrm{eff}} =
@@ -752,10 +695,31 @@ and then applies the standard FTC feasibility test (Eq.~\eqref{eq:tfg_feasibilit
 \label{eq:cadtr_feasibility}
 \end{equation}
 
-\paragraph{Interpretation}
-A negative $\Delta_{\varepsilon}^{\mathrm{crit}}$ makes the feasibility gate \emph{harder to pass} for critical tasks: CADTR proactively sacrifices the Strategic intelligence bonus to protect the critical task's physical survival. This is a dynamic, event-level decision---not a static policy parameter---and it creates an asymmetric safety contract: critical tasks are shielded from congestion-induced deadline failure while standard tasks continue to use the full Strategic capability when feasible.
+A negative $\Delta_{\varepsilon}^{\mathrm{crit}}$ makes the feasibility gate harder to pass for critical tasks, biasing them toward the Tactical mode and forgoing the quality bonus to improve on-time completion. This is an event-level decision rather than a static parameter: critical tasks are protected from congestion-induced misses, while standard tasks continue to use the Strategic mode when feasible. In our experiments we set $\Delta_{\varepsilon}^{\mathrm{crit}} = -0.20$, tightening the feasibility window by 20\% of the deadline budget for critical events. Table~\ref{tab:cadtr_symbols} defines the symbols used by the policy and Algorithm~\ref{alg:cadtr} gives the procedure.
 
-In our experiments, we use $\Delta_{\varepsilon}^{\mathrm{crit}} = -0.20$, which tightens the feasibility window by 20\% of the deadline budget for critical events. Algorithm~\ref{alg:cadtr} summarizes the full CADTR decision procedure.
+\begin{table}[t]
+\centering
+\caption{Symbols used by CADTR (Algorithm~\ref{alg:cadtr}).}
+\label{tab:cadtr_symbols}
+\begin{tabular}{ll}
+\toprule
+Symbol & Meaning \\
+\midrule
+$R_k$ & Residual service time of the job in service ($0$ if idle) \\
+$Q_k$ & Number of jobs waiting in queue \\
+$\delta_k$ & Deadline budget (TTL) of request $k$ \\
+$p_k$ & Priority class of request $k$: critical or standard \\
+$\hat{s}(\textsc{fast})$ & Mean service time of the Tactical mode \\
+$\hat{s}(\textsc{slow})$ & Mean service time of the Strategic mode \\
+$\rho$ & Queue-mix parameter: expected fraction of queued jobs run in \textsc{slow} \\
+$\hat{s}^{\mathrm{avg}}$ & Mixed mean service time, $\rho\,\hat{s}(\textsc{slow})+(1-\rho)\,\hat{s}(\textsc{fast})$ \\
+$\widehat{W}_k$ & Predicted waiting time until service start \\
+$\varepsilon$ & Base time-margin parameter \\
+$\Delta_{\varepsilon}^{\mathrm{crit}}$ & Critical-event margin shift ($<0$) \\
+$\varepsilon_k^{\mathrm{eff}}$ & Effective margin applied to request $k$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{algorithm}[t]
 \caption{CADTR (Context-Aware Dynamic Tool Resolution) at request arrival.}
@@ -778,8 +742,7 @@ In our experiments, we use $\Delta_{\varepsilon}^{\mathrm{crit}} = -0.20$, which
 \end{algorithmic}
 \end{algorithm}
 
-\paragraph{Structural inheritance}
-Because CADTR is FTC with a state-dependent $\varepsilon$ substitution, the monotonicity structure of Theorem~\ref{thm:ftc_structure} is inherited: within each priority class, CADTR remains a monotone threshold policy in $(R_k, Q_k, \delta_k)$. The multi-mode generalization (Theorem~\ref{thm:ftc_multimode}) also extends directly by substituting $\varepsilon_k^{\mathrm{eff}}$ into the tier-threshold rule.
+Because CADTR is FTC with a state-dependent $\varepsilon$ substitution, the monotonicity structure of Theorem~\ref{thm:ftc_structure} is inherited: within each priority class, CADTR remains a monotone threshold policy in $(R_k, Q_k, \delta_k)$. The multi-mode generalization of Theorem~\ref{thm:ftc_multimode} also extends by substituting $\varepsilon_k^{\mathrm{eff}}$ into the tier-threshold rule.
 
 
 \section{Baseline Policies}
@@ -866,7 +829,7 @@ We simulate a non-preemptive single-server queue with an infinite waiting room a
 For each mode $m$, we obtain empirical end-to-end latency samples from a dedicated trace-generation harness and implement the service-time distribution $F_m$ by trace replay (sampling with replacement). Each sample measures the full execution time of the corresponding pipeline, including model generation and any tool overhead present in \textsc{slow}. This keeps the simulator nonparametric at the service-time layer and preserves the heavy tails, multi-modality, and mode separation observed in the measured traces.
 
 \paragraph{Counterfactual paired measurements}
-A naive trace-collection protocol can confound prompt difficulty with mode choice: if a router tends to send harder prompts to the tool-rich pipeline, then mode-wise latency pools mix the effect of the prompt with the effect of the mode. To reduce this selection bias, we additionally collect counterfactual pairs by executing the same prompt under both modes. The resulting paired samples condition on the prompt and isolate the marginal latency effect of enabling the slow tool-rich pipeline. These pairs are used both to estimate mode-wise service-time summaries and to support controlled offline policy comparisons under a common prompt mix. Unless otherwise noted, the simulation uses the mode-wise empirical distributions derived from these paired measurements.
+A naive trace-collection protocol can confound prompt difficulty with mode choice: if a router tends to send harder prompts to the tool-augmented pipeline, then mode-wise latency pools mix the effect of the prompt with the effect of the mode. To reduce this selection bias, we additionally collect counterfactual pairs by executing the same prompt under both modes. The resulting paired samples condition on the prompt and isolate the marginal latency effect of enabling the slow tool-augmented pipeline. These pairs are used both to estimate mode-wise service-time summaries and to support controlled offline policy comparisons under a common prompt mix. Unless otherwise noted, the simulation uses the mode-wise empirical distributions derived from these paired measurements.
 
 \subsection{Deadline (TTL) regimes}
 \label{sec:ttl_model}
@@ -910,7 +873,7 @@ The utility model instantiates the multi-resolution framework from Section~\ref{
 U_k(\textsc{fast}) &\sim \mathcal{N}(u_{\mathrm{base}},\, \sigma_u^2), \quad u_{\mathrm{base}} = 1.0,\\
 U_k(\textsc{slow}) &\sim \mathcal{N}(u_{\mathrm{base}} + u_{\mathrm{intel}},\, \sigma_u^2), \quad u_{\mathrm{intel}} = 0.5,
 \end{align*}
-with $\sigma_u = 0.02$ providing minimal organic noise. All values are clipped to $[0, \infty)$. The firm-deadline rule $\tilde{U}_k = U_k(m_k)\mathbf{1}\{c_k \le d_k\}$ (Eq.~\eqref{eq:on_time_utility_model}) applies, so missed deadlines yield $\tilde{U}_k = 0$ (catastrophic failure).
+with $\sigma_u = 0.02$ providing minimal noise. All values are clipped to $[0, \infty)$. The firm-deadline rule $\tilde{U}_k = U_k(m_k)\mathbf{1}\{c_k \le d_k\}$ (Eq.~\eqref{eq:on_time_utility_model}) applies, so missed deadlines yield $\tilde{U}_k = 0$.
 
 \paragraph{Critical-task utility scaling}
 For the two-class experiments (Section~\ref{sec:premium_extension}), critical tasks receive a $1.2\times$ utility multiplier, reflecting the higher operational stakes of mission-critical events. Standard tasks use the base utility values above.
@@ -930,65 +893,11 @@ Our primary experiment sweeps the arrival rate $\lambda$ across nine values from
 \subsection{Trace-generation system and LLM configuration}
 \label{sec:trace_system}
 
-Empirical service-time traces are obtained from a dedicated trace-generation harness
-that executes a tool-routing agent on a fixed local compute environment. The generator
-uses an Ollama backend and three foundation-model backends:
-Llama~3.1, Qwen~2.5 7B Instruct, and Mistral~7B Instruct.
-For each prompt and for each model backend, we record counterfactual paired service
-times by executing both the FAST and SLOW instructions, regardless of the router's
-chosen tool, producing paired $(S^{\text{fast}}, S^{\text{slow}})$ samples for the same
-request. The resulting dataset contains per-prompt metadata, router outputs, latency
-measurements for both modes, the model-backend identifier, and additional response
-attributes such as response length.
+The trace-generation harness executes a two-tool routing agent on a fixed local compute environment, using an Ollama serving stack with three foundation-model backends: Llama~3.1, Qwen~2.5~7B Instruct, and Mistral~7B Instruct. The agent exposes two execution profiles---a lighter fast profile that requests a shorter answer and a richer slow profile that requests a longer answer---and the harness logs prompt-level metadata, router decisions, error indicators, response lengths, the model-backend identifier, and the paired end-to-end latencies for both modes on the same prompt (Section~\ref{sec:service_traces}). The prompt set is deliberately mixed, spanning short factual or arithmetic requests and longer prompts that require explanation, comparison, planning, or multi-step reasoning. The main queueing experiments replay the Llama~3.1 paired trace as the service-time source; the Qwen and Mistral backends are collected with the same harness and used for the cross-backend service-time comparison of Section~\ref{sec:results_ecdf}.
 
-The main queueing experiments replay the Llama~3.1 paired trace as the
-service-time source. The Qwen~2.5~7B Instruct and Mistral~7B Instruct backends
-are collected with the same harness and are used for the cross-backend
-service-time comparison (Section~\ref{sec:results_ecdf}); they confirm that the
-fast/slow latency separation that the policies exploit is present across
-backends.
+The two modes differ in response style as well as latency. Excluding errored rows ($n=1332$), \texttt{fast\_lookup} responses are short (mean $\approx 173$ characters, median $\approx 156$, $p_{90}\approx 333$), whereas \texttt{deep\_reasoner} responses are substantially longer (mean $\approx 3837$, median $\approx 3761$, $p_{90}\approx 5343$). This length contrast is the application-level phenomenon that the \textsc{fast}/\textsc{slow} abstraction models, and it drives the calibration of $\hat{s}(\textsc{fast})$, $\hat{s}(\textsc{slow})$, and the replay distributions $F_m$.
 
-\paragraph{Serving stack and dataset structure}
-The trace-generation stack consists of four layers:
-(i) a prompt set submitted to a local tool-routing agent,
-(ii) an Ollama-served foundation-model backend
-(Llama~3.1, Qwen~2.5 7B Instruct, or Mistral~7B Instruct),
-(iii) two execution profiles exposed to the agent, namely a lighter fast profile that
-requests a shorter answer and a richer slow profile that requests a longer answer, and
-(iv) a logging layer that records prompt-level metadata, router decisions, error
-indicators, response lengths, the model-backend identifier, and the paired end-to-end
-latencies for both modes on the same prompt.
-The prompt set is deliberately mixed: it includes short factual or arithmetic requests
-and longer prompts that require explanation, comparison, planning, or multi-step
-reasoning.
-The important point is that the same underlying prompt is executed in both modes for
-each model backend, so each dataset row represents a matched fast/slow pair for a fixed
-query and model identity.
-
-\paragraph{Why the paired design matters}
-The paired counterfactual protocol is important for causal hygiene in the latency data. Without pairing, mode-specific trace pools can inherit the router's prompt-selection effects; for example, difficult prompts may be overrepresented in the tool-rich mode. Executing both modes on the same prompt conditions on prompt content and therefore reduces selection bias in the estimated fast/slow latency gap. For the queueing study, this gives a cleaner estimate of the marginal service-time impact of enabling the richer tool profile and yields a more defensible offline replay workload.
-
-\paragraph{Mode characterization}
-The two modes differ not only in mean latency, but also in response style and intended task type. \texttt{fast\_lookup} is designed for short factual answers and single-step lookups; in the trace database (excluding errored rows; $n=1332$), response length in characters is typically small (mean $\approx 173$, median $\approx 156$, $p_{10}\approx 30$, $p_{90}\approx 333$, min $=2$, max $=1736$). \texttt{deep\_reasoner} is designed for longer, explanation-oriented, or multi-step responses; in the same trace database ($n=1332$), responses are substantially longer (mean $\approx 3837$, median $\approx 3761$, $p_{10}\approx 2398$, $p_{90}\approx 5343$, min $=1410$, max $=7618$). This distinction is exactly the application-level phenomenon that motivates the \textsc{fast}/\textsc{slow} abstraction in the queueing model.
-
-\paragraph{What matters for the queueing study}
-For the queueing results, the material properties of the LLM setup are the empirical mode-wise service-time distributions, their within-prompt fast/slow contrast, and the fact that the same hardware and software stack is used throughout trace collection. These properties determine the calibration of $\hat{s}(\textsc{fast})$, $\hat{s}(\textsc{slow})$, and the replay distributions $F_m$. By contrast, the exact wording style of the responses, the internal architecture of the local model, or the semantic quality of any one answer are not first-order inputs to the queueing analysis; they matter only insofar as they induce different latency profiles across the two modes.
-
-\paragraph{Computation environment}
-Trace collection was tested on Windows~11 (64-bit) with an AMD Ryzen~7~5800H CPU, an RTX~3080 Laptop GPU (8GB), and 31.4~GiB RAM, using Python~3.9.13. These specifications are reported to contextualize absolute latencies. The policy comparison itself is based on relative performance under a common trace distribution rather than on claims about one absolute hardware point.
-
-\paragraph{External validity}
-The trace source is still intentionally controlled: it uses a fixed local hardware
-environment, a two-tool router schema, and three local model backends
-(Llama~3.1, Qwen~2.5 7B Instruct, and Mistral~7B Instruct).
-We therefore do not claim that the absolute latency values will transfer unchanged to
-every tool-augmented LLM deployment.
-At the same time, the queueing conclusions are not tied to one model identity.
-FTC does not use model-specific internals, token-level features, or prompt semantics;
-it uses backlog, TTL, and calibrated mode-wise latency summaries.
-Across all three measured backends, the same qualitative fast/slow separation remains
-visible, supporting the claim that the feasibility-gating mechanism transfers at the
-methodology level beyond a single model family.
+Trace collection was run on Windows~11 (64-bit) with an AMD Ryzen~7~5800H CPU, an RTX~3080 Laptop GPU (8\,GB), and 31.4~GiB RAM, using Python~3.9.13; these specifications contextualize absolute latencies. We do not claim that absolute latency values transfer unchanged to every deployment, but the queueing conclusions are not tied to one model identity: FTC uses only backlog, TTL, and calibrated mode-wise latency summaries, and the same qualitative fast/slow separation is visible across all three measured backends.
 
 \subsection{Metrics}
 \label{sec:metrics}
@@ -996,7 +905,7 @@ methodology level beyond a single model family.
 We report:
 (i) \emph{deadline-miss rate (DMR)} $\Pr[c_k>d_k]$,
 (ii) \emph{mean on-time utility} $\mathbb{E}[\tilde{U}_k]$,
-and (iii) latency summary statistics (e.g., p95 end-to-end latency) where appropriate.
+and (iii) latency summary statistics such as p95 end-to-end latency where appropriate.
 For strict-priority experiments, we additionally report per-class metrics and the resulting class-wise utility--timeliness trade-offs.
 
 \subsection{Reproducibility}
@@ -1056,10 +965,10 @@ and text. The tools used were OpenAI Codex (versions~5.3 and~5.4;
 
 To isolate the impact of our dynamic risk adaptation, we evaluate CADTR against FTC* (our ablation baseline), alongside F-BB and the two mathematically optimal Oracles. The evaluation is conducted using the trace-driven simulator described in Section~\ref{sec:exp_setup}. The primary experiment sweeps arrival rate $\lambda$ from 0.03 to 0.19~req/s with 25\% critical tasks and a fixed deadline budget of $35$\,s. All results are averaged over 30 replications. We report per-class and overall metrics: miss rate (DMR), mean realized utility, and Strategic tool (slow-mode) usage fraction.
 
-\subsection{Critical task miss rate: The Hero Graph}
+\subsection{Critical-task protection}
 \label{sec:results_hero}
 
-Figure~\ref{fig:hero_graph} shows the central finding: CADTR maintains a practically flat ${\sim}3.5\%$ critical-task miss rate across the full load sweep, while the oracle baselines---which have \emph{strictly more queue-state information}---degrade catastrophically as load increases. At $\lambda = 0.11$, the CDF Oracle drops 14.6\% of critical tasks and the Mode-Aware Oracle drops 11.6\%, compared to CADTR's 3.4\%. At $\lambda = 0.19$, the oracles still miss ${\sim}11\text{--}14\%$ of critical tasks while CADTR holds at 3.5\%. To confirm statistical significance, we perform a paired t-test comparing CADTR against the oracle baselines at the representative medium load $\lambda = 0.11$. The critical miss rate reduction under CADTR is highly statistically significant, yielding $p < 10^{-30}$ against both the Myopic CDF Oracle ($t = -100.64$, $p = 1.88 \times 10^{-38}$) and the Mode-Aware Oracle ($t = -74.51$, $p = 1.11 \times 10^{-34}$).
+Figure~\ref{fig:hero_graph} shows the central finding: CADTR maintains a practically flat ${\sim}3.5\%$ critical-task miss rate across the full load sweep, while the oracle baselines---which use strictly more queue-state information---degrade sharply as load increases. At $\lambda = 0.11$, the CDF Oracle drops 14.6\% of critical tasks and the Mode-Aware Oracle drops 11.6\%, compared to CADTR's 3.4\%. At $\lambda = 0.19$, the oracles still miss ${\sim}11\text{--}14\%$ of critical tasks while CADTR holds at 3.5\%. To confirm statistical significance, we perform a paired t-test comparing CADTR against the oracle baselines at the representative medium load $\lambda = 0.11$. The critical miss rate reduction under CADTR is highly statistically significant, yielding $p < 10^{-30}$ against both the Myopic CDF Oracle ($t = -100.64$, $p = 1.88 \times 10^{-38}$) and the Mode-Aware Oracle ($t = -74.51$, $p = 1.11 \times 10^{-34}$).
 
 This result is not explained by informational advantage: CADTR uses \emph{less} queue-state information than either oracle. The difference is CADTR's event-driven $\varepsilon$-shift, which provides \emph{semantic awareness}---the ability to distinguish ``this is a critical event that must not fail'' from ``this is a routine task.'' The oracles, despite their mathematical sophistication, are blind to event semantics and treat all tasks identically.
 
@@ -1070,12 +979,7 @@ This result is not explained by informational advantage: CADTR uses \emph{less} 
 \label{fig:hero_graph}
 \end{figure}
 
-\subsection{The shield mechanism: Dynamic Strategic tool throttling}
-\label{sec:results_shield}
-
-How does CADTR protect critical tasks? Figure~\ref{fig:shield_mechanism} reveals the mechanism: CADTR dynamically throttles Strategic tool usage on critical tasks from 41\% at low load ($\lambda = 0.03$) down to 5\% at high load ($\lambda = 0.19$). In contrast, the oracle baselines maintain ${\sim}9\%$ Strategic usage at high load---insufficient throttling because they cannot distinguish critical from standard tasks.
-
-This adaptive behavior is CADTR's ``shield'': when the system detects congestion, it proactively sacrifices the intelligence bonus on critical tasks to prioritize their physical survival. The $\varepsilon$-shift creates a \emph{safe corridor} in the feasibility space where critical tasks are preferentially routed to the Tactical (fast) tool, reducing their exposure to congestion-induced deadline failure.
+Figure~\ref{fig:shield_mechanism} shows the mechanism behind this protection: CADTR throttles Strategic-mode usage on critical tasks from 41\% at low load ($\lambda = 0.03$) to 5\% at high load ($\lambda = 0.19$). The oracle baselines instead maintain ${\sim}9\%$ Strategic usage at high load---insufficient throttling, because they do not distinguish critical from standard tasks. As congestion grows, the $\varepsilon$-shift contracts the Strategic admission region for critical tasks, routing them preferentially to the Tactical mode and reducing their exposure to congestion-induced misses.
 
 \begin{figure}[t]
 \centering
@@ -1084,10 +988,10 @@ This adaptive behavior is CADTR's ``shield'': when the system detects congestion
 \label{fig:shield_mechanism}
 \end{figure}
 
-\subsection{Overall system utility under load}
+\subsection{Overall utility and miss rate}
 \label{sec:results_utility}
 
-Figure~\ref{fig:overall_utility} shows that CADTR's critical-task protection does not come at the expense of system-level utility. Across the load sweep, CADTR and F-BB maintain the highest overall utility, while both oracle baselines suffer utility degradation from their elevated miss rates---a direct consequence of their inability to shield critical tasks.
+CADTR's critical-task protection does not come at the expense of system-level utility (Figure~\ref{fig:overall_utility}). Across the load sweep, CADTR and F-BB maintain the highest overall utility, while both oracle baselines lose utility through their elevated miss rates.
 
 \begin{figure}[t]
 \centering
@@ -1096,10 +1000,7 @@ Figure~\ref{fig:overall_utility} shows that CADTR's critical-task protection doe
 \label{fig:overall_utility}
 \end{figure}
 
-\subsection{Overall deadline miss rate}
-\label{sec:results_overall_mr}
-
-Figure~\ref{fig:overall_mr} presents the aggregate (critical + standard) deadline miss rate. F-BB achieves the lowest overall miss rate due to its ultra-conservative all-\textsc{slow} backlog assumption, but this comes at no informational cost advantage. CADTR achieves the second-lowest overall miss rate, outperforming both oracle baselines across the sweep. The CDF Oracle, despite being the most mathematically sophisticated, has the worst aggregate miss rate at high load---confirming that myopic per-task expected-utility optimization fails under congestion.
+The aggregate deadline miss rate across all task classes is shown in Figure~\ref{fig:overall_mr}. F-BB achieves the lowest overall miss rate through its conservative all-\textsc{slow} backlog assumption. CADTR achieves the second-lowest overall miss rate, outperforming both oracle baselines across the sweep. The CDF Oracle has the worst aggregate miss rate at high load, confirming that myopic per-task expected-utility optimization fails under congestion.
 
 \begin{figure}[t]
 \centering
@@ -1108,10 +1009,7 @@ Figure~\ref{fig:overall_mr} presents the aggregate (critical + standard) deadlin
 \label{fig:overall_mr}
 \end{figure}
 
-\subsection{Quantitative summary at selected load points}
-\label{sec:results_table}
-
-Table~\ref{tab:lambda_sweep} provides a detailed numerical comparison at three representative load levels: low ($\lambda=0.03$), medium ($\lambda=0.11$), and high ($\lambda=0.19$).
+Table~\ref{tab:lambda_sweep} summarizes performance at three representative load levels: low $\lambda=0.03$, medium $\lambda=0.11$, and high $\lambda=0.19$.
 
 \begin{table}[t]
 \centering
@@ -1179,33 +1077,17 @@ supporting the multi-resolution tool abstraction.}
 \section{Discussion}
 \label{sec:discussion}
 
-This section analyzes why CADTR's minimal mechanism outperforms mathematically sophisticated oracles, explains the robustness of feasibility gating, and discusses limitations and future directions.
+Both oracle baselines possess strictly more quantitative queue information than CADTR, yet they miss far more critical tasks under load. The Mode-Aware Oracle computes exact per-task waiting times by inspecting every queued task's assigned mode, eliminating the approximation error of the $\rho$-based backlog estimator, and the CDF Oracle maximizes expected on-time utility via a Gaussian CDF approximation. Both treat critical and standard tasks identically, so under congestion they accept the same level of risk for a routine status update as for a mission-critical alert. CADTR breaks this symmetry with a single additive $\varepsilon$-shift, one conditional branch in Algorithm~\ref{alg:cadtr}, that proactively routes critical tasks to the Tactical tool under congestion. The lesson is that semantic awareness can outperform purely quantitative optimization when the cost of failure is asymmetric across task classes.
 
-\subsection{Why oracles fail: The limits of myopic optimization}
-
-The most striking result is that both oracle baselines---which possess strictly more quantitative queue information, but lack CADTR's qualitative semantic context---fail catastrophically on critical tasks under load. This is not a calibration artifact; it is a fundamental limitation of \emph{semantic blindness}.
-
-The Mode-Aware Oracle computes exact per-task waiting times by inspecting every queued task's assigned mode, eliminating the approximation error of the $\rho$-based backlog estimator. The CDF Oracle goes further, maximizing expected on-time utility via Gaussian CDF approximation. Yet both treat critical and standard tasks identically. Under congestion, this symmetry is fatal: a mathematically optimal per-task decision that is blind to task semantics will accept the same level of risk for a routine status update and a mission-critical threat alert.
-
-CADTR breaks this symmetry with a single additive $\varepsilon$-shift. The mechanism is trivial in implementation (one conditional branch in Algorithm~\ref{alg:cadtr}), yet it creates a qualitatively different outcome: critical tasks are proactively routed to the Tactical (fast) tool under congestion, sacrificing the intelligence bonus to prioritize survival. The lesson is that \emph{semantic awareness beats mathematical sophistication} when the cost of failure is asymmetric across task classes.
-
-\subsection{Dynamic tool throttling as a safety mechanism}
-
-CADTR's load-adaptive Strategic tool throttling (Figure~\ref{fig:shield_mechanism}) functions as an automatic safety mechanism. At low load, critical tasks use the Strategic tool 41\% of the time, benefiting from the full intelligence bonus. As congestion grows, CADTR progressively restricts Strategic usage to 5\%, concentrating the system's deadline-feasibility budget on survival. This behavior emerges naturally from the $\varepsilon$-shift interacting with the monotone threshold structure (Theorem~\ref{thm:ftc_structure}): a tighter $\varepsilon$ contracts the Strategic-tool admission region in exactly the cases where the backlog threatens deadline feasibility.
-
-\subsection{Why feasibility gating is robust under congestion}
-Feasibility gating couples mode selection to the same quantity that defines timeliness: the remaining deadline budget $\delta_k$. When backlog grows, the waiting-time estimate $\widehat{W}_k$ increases, causing more arrivals to be assigned to the Tactical tool, which reduces the induced mean service time and stabilizes queueing delays. This feedback behavior differs from static optimization because the decision is expressed directly in ``deadline units'' rather than relying on proxy signals. The monotonicity result in Theorem~\ref{thm:ftc_structure} formalizes this: larger backlog can only shrink, and larger deadline budget can only expand, the Strategic-tool admission region.
-
-\subsection{Interpreting $\varepsilon$ as an operational parameter}
-FTC's conservatism is controlled by a single, interpretable parameter: the time margin $\varepsilon$. CADTR adds a second dimension: the priority-dependent shift $\Delta_{\varepsilon}^{\mathrm{crit}}$, which controls how aggressively the system protects critical tasks. In deployment, these two parameters can be tuned independently: $\varepsilon$ sets the baseline operating point for standard traffic, while $\Delta_{\varepsilon}^{\mathrm{crit}}$ controls the safety margin for critical events.
+The same mechanism acts as a load-adaptive throttle on Strategic-tool usage (Figure~\ref{fig:shield_mechanism}). At low load, critical tasks use the Strategic tool 41\% of the time; as congestion grows, CADTR progressively restricts Strategic usage to 5\%, reserving the deadline-feasibility budget for timely completion. This behavior follows from the $\varepsilon$-shift interacting with the monotone threshold structure of Theorem~\ref{thm:ftc_structure}: a tighter $\varepsilon$ contracts the Strategic-tool admission region precisely when backlog threatens feasibility. Feasibility gating is robust because it couples mode selection to the quantity that defines timeliness, the remaining deadline budget $\delta_k$: when backlog grows, the waiting-time estimate $\widehat{W}_k$ rises, more arrivals are assigned to the Tactical tool, the induced mean service time falls, and queueing delays stabilize. Operationally, the policy exposes two interpretable parameters that can be tuned independently: the time margin $\varepsilon$ sets the baseline operating point for standard traffic, while the priority-dependent shift $\Delta_{\varepsilon}^{\mathrm{crit}}$ sets the safety margin for critical events.
 
 \subsection{Limitations and extensions}
-This paper focuses on the single-server setting to isolate the feasibility-gating principle in the simplest nontrivial queue where backlog, deadlines, and mode choice interact transparently. Multi-server, multi-GPU, or batched extensions are important future directions. The binary critical/standard classification could be generalized to a continuous priority spectrum with graded $\varepsilon$-shifts. Online calibration of $\hat{s}(\cdot)$ and $\Delta_{\varepsilon}^{\mathrm{crit}}$ via feedback control is another natural extension. Finally, CADTR is designed to compose with token-level and kernel-level serving optimizations by acting at an orthogonal layer: it shapes the workload by selecting among tool-permission profiles, while serving kernels optimize execution of the chosen work.
+This paper focuses on the single-server setting to isolate the feasibility-gating principle in the simplest nontrivial queue where backlog, deadlines, and mode choice interact transparently. Multi-server, multi-GPU, or batched extensions are important future directions. The binary critical/standard classification could be generalized to a continuous priority spectrum with graded $\varepsilon$-shifts. Online calibration of $\hat{s}(\cdot)$ and $\Delta_{\varepsilon}^{\mathrm{crit}}$ via feedback control is another natural extension. Finally, CADTR composes with token-level and kernel-level serving optimizations by acting at an orthogonal layer: it shapes the workload by selecting among tool-permission profiles, while serving kernels optimize execution of the chosen work.
 
 
 \section{Conclusion}
 \label{conclusion}
-We studied deadline-constrained tool orchestration for autonomous agents through a queueing model with non-preemptive service, firm deadlines, and a multi-resolution utility structure. In this setting, tool permissioning is a systems-level control problem: enabling a tool-rich Strategic pipeline improves per-task decision quality, but it also increases congestion and the risk of catastrophic deadline failure.
+We studied deadline-constrained tool orchestration for autonomous agents through a queueing model with non-preemptive service, firm deadlines, and a multi-resolution utility structure. In this setting, tool permissioning is a systems-level control problem: granting access to the slower Strategic tool improves per-task decision quality, but it also increases congestion and the risk of missed deadlines.
 
 We introduced \emph{Firm-Deadline Tool Control (FTC)}, an arrival-epoch feasibility-gating policy with a provably exact monotone threshold structure in estimated backlog, deadline budget, and the time-margin parameter~$\varepsilon$, including a generalization to arbitrarily many ordered tool tiers. We then introduced \emph{Context-Aware Dynamic Tool Resolution (CADTR)}, which extends FTC with a minimal but consequential mechanism: event-driven dynamic risk adaptation via a priority-dependent $\varepsilon$-shift.
 
@@ -1230,7 +1112,7 @@ The authors declare that they have no known competing financial interests or per
 
 \section*{Data and Code Availability}
 \label{sec:data}
-The code to reproduce the experiments and plots is available in the accompanying repository.
+The code and data required to reproduce all experiments, tables, and figures---including the simulator, the empirical service-time traces, and the analysis/plotting scripts---are publicly available at \url{https://github.com/maliozturk/CADTR}.
 
 \clearpage
 \bibliography{references}
