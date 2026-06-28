@@ -1,0 +1,17 @@
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Generated simulation outputs and figures (regenerate with reproduce/*)
+Results/
+
+# Trace generator SQLite scratch DB (canonical traces are the .csv files)
+*.db
+
+# Manuscript build artifacts
+TexFiles/*
+
+# Environments / OS
+.venv/
+venv/
+.DS_Store

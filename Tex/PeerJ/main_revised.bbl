@@ -1,0 +1,196 @@
+\begin{thebibliography}{}
+
+\bibitem[Agrawal et~al., 2024a]{agrawal2024vidur}
+Agrawal, A., Kedia, N., Mohan, J., Panwar, A., Kwatra, N., Gulavani, B.~S.,
+  Ramjee, R., and Tumanov, A. (2024a).
+\newblock Vidur: A large-scale simulation framework for llm inference.
+
+\bibitem[Agrawal et~al., 2024b]{agrawal2024sarathiserve}
+Agrawal, A., Kedia, N., Panwar, A., Mohan, J., Kwatra, N., Gulavani, B.~S.,
+  Tumanov, A., and Ramjee, R. (2024b).
+\newblock Taming throughput-latency tradeoff in llm inference with
+  sarathi-serve.
+
+\bibitem[Chen et~al., 2023]{chen2023frugalgpt}
+Chen, L., Zaharia, M., and Zou, J. (2023).
+\newblock Frugalgpt: How to use large language models while reducing cost and
+  improving performance.
+
+\bibitem[Chen et~al., 2025]{chen2025slosserve}
+Chen, S., Jia, Z., Khan, S., Krishnamurthy, A., and Gibbons, P.~B. (2025).
+\newblock {SLOs-Serve}: Optimized serving of multi-{SLO} {LLM}s.
+
+\bibitem[Gujarati et~al., 2020]{258862}
+Gujarati, A., Karimi, R., Alzayat, S., Hao, W., Kaufmann, A., Vigfusson, Y.,
+  and Mace, J. (2020).
+\newblock Serving {DNNs} like clockwork: Performance predictability from the
+  bottom up.
+\newblock In {\em 14th USENIX Symposium on Operating Systems Design and
+  Implementation (OSDI 20)}, pages 443--462. USENIX Association.
+
+\bibitem[Hellerstein et~al., 2004]{hellerstein2004feedback}
+Hellerstein, J.~L., Diao, Y., Parekh, S., and Tilbury, D.~M. (2004).
+\newblock {\em Feedback Control of Computing Systems}.
+\newblock Wiley-IEEE Press.
+
+\bibitem[Hong et~al., 2025]{hong2025sola}
+Hong, K., Li, X., Chen, L., Mao, Q., Dai, G., Ning, X., Yan, S., Liang, Y., and
+  Wang, Y. (2025).
+\newblock {SOLA}: Optimizing {SLO} attainment for large language model serving
+  with state-aware scheduling.
+\newblock MLSys 2025 (Poster).
+
+\bibitem[Ibrahim and Whitt, 2009]{ibrahim2009delay}
+Ibrahim, R. and Whitt, W. (2009).
+\newblock Real-time delay estimation based on delay history.
+\newblock {\em Manufacturing \& Service Operations Management}, 11(3):397--415.
+
+\bibitem[Kluge et~al., 2015]{10.1007/978-3-319-16086-3_16}
+Kluge, F., Neuerburg, M., and Ungerer, T. (2015).
+\newblock Utility-based scheduling of {\$}{\$}(m,k){\$}{\$}-firm real-time task
+  sets.
+\newblock In Pinho, L. M.~P., Karl, W., Cohen, A., and Brinkschulte, U.,
+  editors, {\em Architecture of Computing Systems -- ARCS 2015}, pages
+  201--211, Cham. Springer International Publishing.
+
+\bibitem[Kwon et~al., 2023]{kwon2023pagedattention}
+Kwon, W., Li, Z., Zhuang, S., Sheng, Y., Zheng, L., Yu, C.~H., Gonzalez, J.~E.,
+  Zhang, H., and Stoica, I. (2023).
+\newblock Efficient memory management for large language model serving with
+  {PagedAttention}.
+\newblock In {\em Proceedings of the 29th ACM Symposium on Operating Systems
+  Principles (SOSP)}.
+\newblock Also available as arXiv:2309.06180.
+
+\bibitem[Liu and Layland, 1973]{liu1973scheduling}
+Liu, C.~L. and Layland, J.~W. (1973).
+\newblock Scheduling algorithms for multiprogramming in a hard-real-time
+  environment.
+\newblock {\em Journal of the ACM}, 20(1):46--61.
+
+\bibitem[L{\'o}pez et~al., 2004]{lopez2004edfmp}
+L{\'o}pez, J.~M., D{\'i}az, J.~L., and Garc{\'i}a, D.~F. (2004).
+\newblock Utilization bounds for {EDF} scheduling on real-time multiprocessor
+  systems.
+\newblock {\em Real-Time Systems}, 28(1):39--68.
+
+\bibitem[Lu et~al., 2002]{lu2001feedback}
+Lu, C., Stankovic, J.~A., Son, S.~H., and Tao, G. (2002).
+\newblock Feedback control real-time scheduling: Framework, modeling, and
+  algorithms.
+\newblock {\em Real-Time Systems}, 23(1--2):85--126.
+
+\bibitem[Luo, 2025]{autellix2025}
+Luo, M. (2025).
+\newblock Autellix: An efficient serving engine for llm agents as general
+  programs.
+
+\bibitem[Neely, 2010]{neely2010stochastic}
+Neely, M.~J. (2010).
+\newblock {\em Stochastic Network Optimization with Application to
+  Communication and Queueing Systems}.
+\newblock Morgan \& Claypool Publishers.
+
+\bibitem[Nie et~al., 2024]{nie2024aladdin}
+Nie, C., Fonseca, R., and Liu, Z. (2024).
+\newblock Aladdin: Joint placement and scaling for {SLO}-aware {LLM} serving.
+
+\bibitem[O.~Garnett, 2002]{abandonmentra}
+O.~Garnett, A.~Mandelbaum, M.~R. (2002).
+\newblock Designing a call center with impatient customers.
+\newblock In {\em Manufacturing \& Service Operations Management
+  4(3):208--227}.
+
+\bibitem[Ong et~al., 2024]{ong2024routellm}
+Ong, I., Almahairi, A., Wu, V., Chiang, W.-L., Wu, T., Gonzalez, J.~E., Kadous,
+  M.~W., and Stoica, I. (2024).
+\newblock Routellm: Learning to route llms with preference data.
+
+\bibitem[Patke et~al., 2024]{patke2024qlm}
+Patke, A., Reddy, D., Jha, S., Pinto, C., Qiu, H., Cui, S., Narayanaswami, C.,
+  Kalbarczyk, Z.~T., and Iyer, R.~K. (2024).
+\newblock Queue management for large language model serving.
+\newblock In {\em Proceedings of the 29th ACM International Conference on
+  Architectural Support for Programming Languages and Operating Systems
+  (ASPLOS)}.
+\newblock Also circulated as arXiv:2407.00047.
+
+\bibitem[Schick et~al., 2023]{schick2023toolformer}
+Schick, T., Dwivedi-Yu, J., Dess{\`i}, R., Raileanu, R., Lomeli, M.,
+  Zettlemoyer, L., Cancedda, N., and Scialom, T. (2023).
+\newblock Toolformer: Language models can teach themselves to use tools.
+
+\bibitem[Stankovic et~al., 1999]{lu1999case}
+Stankovic, J.~A., Lu, C., Son, S.~H., and Tao, G. (1999).
+\newblock The case for feedback control real-time scheduling.
+\newblock In {\em Proceedings of the 11th Euromicro Conference on Real-Time
+  Systems (ECRTS)}, pages 11--20.
+
+\bibitem[Sun et~al., 2024]{sun2024llumnix}
+Sun, B. et~al. (2024).
+\newblock Llumnix: Dynamic scheduling for large language model serving.
+
+\bibitem[Tang et~al., 2025]{tang2025scorpio}
+Tang, Y., Lan, T., Huang, X., Lu, H., and Chen, W. (2025).
+\newblock Scorpio: Serving the right requests at the right time for
+  heterogeneous slos in llm inference.
+
+\bibitem[Tao, 2025]{pars2025}
+Tao, Y. (2025).
+\newblock Prompt-aware scheduling for low-latency llm serving.
+
+\bibitem[Wang et~al., 2025]{wang2025mixllm}
+Wang, X., Liu, Y., Cheng, W., Zhao, X., Chen, Z., Yu, W., Fu, Y., and Chen, H.
+  (2025).
+\newblock {M}ix{LLM}: Dynamic routing in mixed large language models.
+\newblock In Chiruzzo, L., Ritter, A., and Wang, L., editors, {\em Proceedings
+  of the 2025 Conference of the Nations of the Americas Chapter of the
+  Association for Computational Linguistics: Human Language Technologies
+  (Volume 1: Long Papers)}, pages 10912--10922, Albuquerque, New Mexico.
+  Association for Computational Linguistics.
+
+\bibitem[Wang, 2025a]{astraea2025}
+Wang, Y. (2025a).
+\newblock Astraea: A state-aware scheduling engine for llm-powered agents.
+
+\bibitem[Wang, 2025b]{augserve2025}
+Wang, Y. (2025b).
+\newblock Augserve: Adaptive request scheduling for augmented large language
+  model inference services.
+
+\bibitem[Wei, 2025]{agentxpu2025}
+Wei, X. (2025).
+\newblock Agent.xpu: Efficient scheduling of agentic llm workloads on
+  heterogeneous socs.
+
+\bibitem[Whitt, 2006]{whitt2006fluid}
+Whitt, W. (2006).
+\newblock Fluid models for multiserver queues with abandonments.
+\newblock {\em Operations Research}, 54(1):37--54.
+
+\bibitem[Wu et~al., 2023]{wu2023fastserve}
+Wu, B., Zhong, Y., Zhang, Z., Huang, G., Liu, X., and Jin, X. (2023).
+\newblock Fast distributed inference serving for large language models.
+
+\bibitem[Yao et~al., 2023]{yao2023react}
+Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., and Cao, Y.
+  (2023).
+\newblock React: Synergizing reasoning and acting in language models.
+
+\bibitem[Zhang et~al., 2023]{285173}
+Zhang, H., Tang, Y., Khandelwal, A., and Stoica, I. (2023).
+\newblock {SHEPHERD}: Serving {DNNs} in the wild.
+\newblock In {\em 20th USENIX Symposium on Networked Systems Design and
+  Implementation (NSDI 23)}, pages 787--808, Boston, MA. USENIX Association.
+
+\bibitem[Zhang, 2025]{jitserve2025}
+Zhang, W. (2025).
+\newblock Jitserve: Slo-aware llm serving with imprecise request information.
+
+\bibitem[Zhong et~al., 2024]{zhong2024distserve}
+Zhong, Y., Liu, S., Chen, J., Hu, J., Zhu, Y., Liu, X., Jin, X., and Zhang, H.
+  (2024).
+\newblock Distserve: Disaggregating prefill and decoding for goodput-optimized
+  large language model serving.
+
+\end{thebibliography}

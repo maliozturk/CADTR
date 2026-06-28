@@ -1,0 +1,267 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{yao2023react}
+S.~Yao, J.~Zhao, D.~Yu, N.~Du, I.~Shafran, K.~Narasimhan, Y.~Cao,
+  \href{https://arxiv.org/abs/2210.03629}{React: Synergizing reasoning and
+  acting in language models} (2023).
+\newblock \href {http://arxiv.org/abs/2210.03629} {\path{arXiv:2210.03629}},
+  \href {https://doi.org/10.48550/arXiv.2210.03629}
+  {\path{doi:10.48550/arXiv.2210.03629}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2210.03629}
+
+\bibitem{schick2023toolformer}
+T.~Schick, J.~Dwivedi-Yu, R.~Dess{\`i}, R.~Raileanu, M.~Lomeli, L.~Zettlemoyer,
+  N.~Cancedda, T.~Scialom, \href{https://arxiv.org/abs/2302.04761}{Toolformer:
+  Language models can teach themselves to use tools} (2023).
+\newblock \href {http://arxiv.org/abs/2302.04761} {\path{arXiv:2302.04761}},
+  \href {https://doi.org/10.48550/arXiv.2302.04761}
+  {\path{doi:10.48550/arXiv.2302.04761}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2302.04761}
+
+\bibitem{10.1007/978-3-319-16086-3_16}
+F.~Kluge, M.~Neuerburg, T.~Ungerer, Utility-based scheduling of
+  {\$}{\$}(m,k){\$}{\$}-firm real-time task sets, in: L.~M.~P. Pinho, W.~Karl,
+  A.~Cohen, U.~Brinkschulte (Eds.), Architecture of Computing Systems -- ARCS
+  2015, Springer International Publishing, Cham, 2015, pp. 201--211.
+
+\bibitem{agrawal2024vidur}
+A.~Agrawal, N.~Kedia, J.~Mohan, A.~Panwar, N.~Kwatra, B.~S. Gulavani,
+  R.~Ramjee, A.~Tumanov, \href{https://arxiv.org/abs/2405.05465}{Vidur: A
+  large-scale simulation framework for llm inference} (2024).
+\newblock \href {http://arxiv.org/abs/2405.05465} {\path{arXiv:2405.05465}},
+  \href {https://doi.org/10.48550/arXiv.2405.05465}
+  {\path{doi:10.48550/arXiv.2405.05465}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2405.05465}
+
+\bibitem{nie2024aladdin}
+C.~Nie, R.~Fonseca, Z.~Liu, \href{https://arxiv.org/abs/2405.06856}{Aladdin:
+  Joint placement and scaling for {SLO}-aware {LLM} serving} (2024).
+\newblock \href {http://arxiv.org/abs/2405.06856} {\path{arXiv:2405.06856}},
+  \href {https://doi.org/10.48550/arXiv.2405.06856}
+  {\path{doi:10.48550/arXiv.2405.06856}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2405.06856}
+
+\bibitem{pars2025}
+Y.~Tao, \href{https://arxiv.org/abs/2510.03243}{Prompt-aware scheduling for
+  low-latency llm serving} (2025).
+\newblock \href {http://arxiv.org/abs/2510.03243} {\path{arXiv:2510.03243}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2510.03243}
+
+\bibitem{258862}
+A.~Gujarati, R.~Karimi, S.~Alzayat, W.~Hao, A.~Kaufmann, Y.~Vigfusson, J.~Mace,
+  \href{https://www.usenix.org/conference/osdi20/presentation/gujarati}{Serving
+  {DNNs} like clockwork: Performance predictability from the bottom up}, in:
+  14th USENIX Symposium on Operating Systems Design and Implementation (OSDI
+  20), USENIX Association, 2020, pp. 443--462.
+\newline\urlprefix\url{https://www.usenix.org/conference/osdi20/presentation/gujarati}
+
+\bibitem{agentxpu2025}
+X.~Wei, \href{https://arxiv.org/abs/2506.24045}{Agent.xpu: Efficient scheduling
+  of agentic llm workloads on heterogeneous socs} (2025).
+\newblock \href {http://arxiv.org/abs/2506.24045} {\path{arXiv:2506.24045}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2506.24045}
+
+\bibitem{kwon2023pagedattention}
+W.~Kwon, Z.~Li, S.~Zhuang, Y.~Sheng, L.~Zheng, C.~H. Yu, J.~E. Gonzalez,
+  H.~Zhang, I.~Stoica, \href{https://arxiv.org/abs/2309.06180}{Efficient memory
+  management for large language model serving with {PagedAttention}}, in:
+  Proceedings of the 29th ACM Symposium on Operating Systems Principles (SOSP),
+  2023, also available as arXiv:2309.06180.
+\newblock \href {http://arxiv.org/abs/2309.06180} {\path{arXiv:2309.06180}},
+  \href {https://doi.org/10.48550/arXiv.2309.06180}
+  {\path{doi:10.48550/arXiv.2309.06180}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2309.06180}
+
+\bibitem{agrawal2024sarathiserve}
+A.~Agrawal, N.~Kedia, A.~Panwar, J.~Mohan, N.~Kwatra, B.~S. Gulavani,
+  A.~Tumanov, R.~Ramjee, \href{https://arxiv.org/abs/2403.02310}{Taming
+  throughput-latency tradeoff in llm inference with sarathi-serve} (2024).
+\newblock \href {http://arxiv.org/abs/2403.02310} {\path{arXiv:2403.02310}},
+  \href {https://doi.org/10.48550/arXiv.2403.02310}
+  {\path{doi:10.48550/arXiv.2403.02310}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2403.02310}
+
+\bibitem{patke2024qlm}
+A.~Patke, D.~Reddy, S.~Jha, C.~Pinto, H.~Qiu, S.~Cui, C.~Narayanaswami, Z.~T.
+  Kalbarczyk, R.~K. Iyer, \href{https://arxiv.org/abs/2407.00047}{Queue
+  management for large language model serving}, in: Proceedings of the 29th ACM
+  International Conference on Architectural Support for Programming Languages
+  and Operating Systems (ASPLOS), 2024, also circulated as arXiv:2407.00047.
+\newblock \href {http://arxiv.org/abs/2407.00047} {\path{arXiv:2407.00047}},
+  \href {https://doi.org/10.48550/arXiv.2407.00047}
+  {\path{doi:10.48550/arXiv.2407.00047}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2407.00047}
+
+\bibitem{hong2025sola}
+K.~Hong, X.~Li, L.~Chen, Q.~Mao, G.~Dai, X.~Ning, S.~Yan, Y.~Liang, Y.~Wang,
+  \href{https://mlsys.org/virtual/2025/poster/3231}{{SOLA}: Optimizing {SLO}
+  attainment for large language model serving with state-aware scheduling},
+  MLSys 2025 (Poster) (2025).
+\newline\urlprefix\url{https://mlsys.org/virtual/2025/poster/3231}
+
+\bibitem{chen2025slosserve}
+S.~Chen, Z.~Jia, S.~Khan, A.~Krishnamurthy, P.~B. Gibbons,
+  \href{https://arxiv.org/abs/2504.08784}{{SLOs-Serve}: Optimized serving of
+  multi-{SLO} {LLM}s} (2025).
+\newblock \href {http://arxiv.org/abs/2504.08784} {\path{arXiv:2504.08784}},
+  \href {https://doi.org/10.48550/arXiv.2504.08784}
+  {\path{doi:10.48550/arXiv.2504.08784}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2504.08784}
+
+\bibitem{jitserve2025}
+W.~Zhang, \href{https://arxiv.org/abs/2504.20068}{Jitserve: Slo-aware llm
+  serving with imprecise request information} (2025).
+\newblock \href {http://arxiv.org/abs/2504.20068} {\path{arXiv:2504.20068}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2504.20068}
+
+\bibitem{tang2025scorpio}
+Y.~Tang, T.~Lan, X.~Huang, H.~Lu, W.~Chen,
+  \href{https://arxiv.org/abs/2505.23022}{Scorpio: Serving the right requests
+  at the right time for heterogeneous slos in llm inference} (2025).
+\newblock \href {http://arxiv.org/abs/2505.23022} {\path{arXiv:2505.23022}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2505.23022}
+
+\bibitem{zhong2024distserve}
+Y.~Zhong, S.~Liu, J.~Chen, J.~Hu, Y.~Zhu, X.~Liu, X.~Jin, H.~Zhang,
+  \href{https://arxiv.org/abs/2401.09670}{Distserve: Disaggregating prefill and
+  decoding for goodput-optimized large language model serving} (2024).
+\newblock \href {http://arxiv.org/abs/2401.09670} {\path{arXiv:2401.09670}},
+  \href {https://doi.org/10.48550/arXiv.2401.09670}
+  {\path{doi:10.48550/arXiv.2401.09670}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2401.09670}
+
+\bibitem{sun2024llumnix}
+B.~Sun, et~al., \href{https://arxiv.org/abs/2406.03243}{Llumnix: Dynamic
+  scheduling for large language model serving} (2024).
+\newblock \href {http://arxiv.org/abs/2406.03243} {\path{arXiv:2406.03243}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2406.03243}
+
+\bibitem{wu2023fastserve}
+B.~Wu, Y.~Zhong, Z.~Zhang, G.~Huang, X.~Liu, X.~Jin,
+  \href{https://arxiv.org/abs/2305.05920}{Fast distributed inference serving
+  for large language models} (2023).
+\newblock \href {http://arxiv.org/abs/2305.05920} {\path{arXiv:2305.05920}},
+  \href {https://doi.org/10.48550/ARXIV.2305.05920}
+  {\path{doi:10.48550/ARXIV.2305.05920}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2305.05920}
+
+\bibitem{285173}
+H.~Zhang, Y.~Tang, A.~Khandelwal, I.~Stoica,
+  \href{https://www.usenix.org/conference/nsdi23/presentation/zhang-hong}{{SHEPHERD}:
+  Serving {DNNs} in the wild}, in: 20th USENIX Symposium on Networked Systems
+  Design and Implementation (NSDI 23), USENIX Association, Boston, MA, 2023,
+  pp. 787--808.
+\newline\urlprefix\url{https://www.usenix.org/conference/nsdi23/presentation/zhang-hong}
+
+\bibitem{autellix2025}
+M.~Luo, \href{https://arxiv.org/abs/2502.13965}{Autellix: An efficient serving
+  engine for llm agents as general programs} (2025).
+\newblock \href {http://arxiv.org/abs/2502.13965} {\path{arXiv:2502.13965}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2502.13965}
+
+\bibitem{astraea2025}
+Y.~Wang, \href{https://arxiv.org/abs/2512.14142}{Astraea: A state-aware
+  scheduling engine for llm-powered agents} (2025).
+\newblock \href {http://arxiv.org/abs/2512.14142} {\path{arXiv:2512.14142}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2512.14142}
+
+\bibitem{augserve2025}
+Y.~Wang, \href{https://arxiv.org/abs/2512.04013}{Augserve: Adaptive request
+  scheduling for augmented large language model inference services} (2025).
+\newblock \href {http://arxiv.org/abs/2512.04013} {\path{arXiv:2512.04013}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2512.04013}
+
+\bibitem{chen2023frugalgpt}
+L.~Chen, M.~Zaharia, J.~Zou, \href{https://arxiv.org/abs/2305.05176}{Frugalgpt:
+  How to use large language models while reducing cost and improving
+  performance} (2023).
+\newblock \href {http://arxiv.org/abs/2305.05176} {\path{arXiv:2305.05176}},
+  \href {https://doi.org/10.48550/ARXIV.2305.05176}
+  {\path{doi:10.48550/ARXIV.2305.05176}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2305.05176}
+
+\bibitem{ong2024routellm}
+I.~Ong, A.~Almahairi, V.~Wu, W.-L. Chiang, T.~Wu, J.~E. Gonzalez, M.~W. Kadous,
+  I.~Stoica, \href{https://arxiv.org/abs/2406.18665}{Routellm: Learning to
+  route llms with preference data} (2024).
+\newblock \href {http://arxiv.org/abs/2406.18665} {\path{arXiv:2406.18665}},
+  \href {https://doi.org/10.48550/arXiv.2406.18665}
+  {\path{doi:10.48550/arXiv.2406.18665}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2406.18665}
+
+\bibitem{wang2025mixllm}
+X.~Wang, Y.~Liu, W.~Cheng, X.~Zhao, Z.~Chen, W.~Yu, Y.~Fu, H.~Chen,
+  \href{https://aclanthology.org/2025.naacl-long.545/}{{M}ix{LLM}: Dynamic
+  routing in mixed large language models}, in: L.~Chiruzzo, A.~Ritter, L.~Wang
+  (Eds.), Proceedings of the 2025 Conference of the Nations of the Americas
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (Volume 1: Long Papers), Association for Computational
+  Linguistics, Albuquerque, New Mexico, 2025, pp. 10912--10922.
+\newblock \href {https://doi.org/10.18653/v1/2025.naacl-long.545}
+  {\path{doi:10.18653/v1/2025.naacl-long.545}}.
+\newline\urlprefix\url{https://aclanthology.org/2025.naacl-long.545/}
+
+\bibitem{liu1973scheduling}
+C.~L. Liu, J.~W. Layland, Scheduling algorithms for multiprogramming in a
+  hard-real-time environment, Journal of the ACM 20~(1) (1973) 46--61.
+\newblock \href {https://doi.org/10.1145/321738.321743}
+  {\path{doi:10.1145/321738.321743}}.
+
+\bibitem{lopez2004edfmp}
+J.~M. L{\'o}pez, J.~L. D{\'i}az, D.~F. Garc{\'i}a,
+  \href{https://doi.org/10.1023/B:TIME.0000033378.56741.14}{Utilization bounds
+  for {EDF} scheduling on real-time multiprocessor systems}, Real-Time Systems
+  28~(1) (2004) 39--68.
+\newblock \href {https://doi.org/10.1023/B:TIME.0000033378.56741.14}
+  {\path{doi:10.1023/B:TIME.0000033378.56741.14}}.
+\newline\urlprefix\url{https://doi.org/10.1023/B:TIME.0000033378.56741.14}
+
+\bibitem{neely2010stochastic}
+M.~J. Neely, Stochastic Network Optimization with Application to Communication
+  and Queueing Systems, Morgan \& Claypool Publishers, 2010.
+\newblock \href {https://doi.org/10.2200/S00271ED1V01Y201006CNT007}
+  {\path{doi:10.2200/S00271ED1V01Y201006CNT007}}.
+
+\bibitem{whitt2006fluid}
+W.~Whitt, Fluid models for multiserver queues with abandonments, Operations
+  Research 54~(1) (2006) 37--54.
+\newblock \href {https://doi.org/10.1287/opre.1050.0227}
+  {\path{doi:10.1287/opre.1050.0227}}.
+
+\bibitem{ibrahim2009delay}
+R.~Ibrahim, W.~Whitt, Real-time delay estimation based on delay history,
+  Manufacturing \& Service Operations Management 11~(3) (2009) 397--415.
+\newblock \href {https://doi.org/10.1287/msom.1080.0223}
+  {\path{doi:10.1287/msom.1080.0223}}.
+
+\bibitem{abandonmentra}
+M.~R. O.~Garnett, A.~Mandelbaum, Designing a call center with impatient
+  customers, in: Manufacturing \& Service Operations Management 4(3):208--227,
+  2002.
+
+\bibitem{lu1999case}
+J.~A. Stankovic, C.~Lu, S.~H. Son, G.~Tao, The case for feedback control
+  real-time scheduling, in: Proceedings of the 11th Euromicro Conference on
+  Real-Time Systems (ECRTS), 1999, pp. 11--20.
+\newblock \href {https://doi.org/10.1109/EMRTS.1999.777445}
+  {\path{doi:10.1109/EMRTS.1999.777445}}.
+
+\bibitem{lu2001feedback}
+C.~Lu, J.~A. Stankovic, S.~H. Son, G.~Tao, Feedback control real-time
+  scheduling: Framework, modeling, and algorithms, Real-Time Systems 23~(1--2)
+  (2002) 85--126.
+\newblock \href {https://doi.org/10.1023/A:1015398403337}
+  {\path{doi:10.1023/A:1015398403337}}.
+
+\bibitem{hellerstein2004feedback}
+J.~L. Hellerstein, Y.~Diao, S.~Parekh, D.~M. Tilbury, Feedback Control of
+  Computing Systems, Wiley-IEEE Press, 2004.
+\newblock \href {https://doi.org/10.1002/047166880X}
+  {\path{doi:10.1002/047166880X}}.
+
+\end{thebibliography}

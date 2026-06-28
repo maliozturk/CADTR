@@ -1,0 +1,865 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.8)  8 JUN 2026 13:14
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./manuscript.tex
+(manuscript.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-06>
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/elsarticle\elsarticle.c
+ls
+Document Class: elsarticle 2026/01/09, 3.5: Elsevier Ltd
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2025-11-06 L3 programming layer (loader) 
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count275
+))
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count276
+)
+\@bls=\dimen148
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
+File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen149
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+)
+\c@tnote=\count285
+\c@fnote=\count286
+\c@cnote=\count287
+\c@ead=\count288
+\c@elsarticle@author=\count289
+\@eadauthor=\toks18
+\c@affn=\count290
+\absbox=\box53
+\elsarticlehighlightsbox=\box54
+\elsarticlegrabsbox=\box55
+\keybox=\box56
+\Columnwidth=\dimen152
+\space@left=\dimen153
+\els@boxa=\box57
+\els@boxb=\box58
+\leftMargin=\dimen154
+\@enLab=\toks19
+\@sep=\skip51
+\@@sep=\skip52
+ (manuscript_new.spl)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip53
+\bibsep=\skip54
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count291
+)
+\splwrite=\write3
+\openout3 = `manuscript_new.spl'.
+
+\appnamewidth=\dimen155
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks20
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip55
+
+For additional information on amsmath, use the `?' option.
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks21
+\ex@=\dimen156
+))
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen157
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count292
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count293
+\leftroot@=\count294
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count295
+\DOTSCASE@=\count296
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box59
+\strutbox@=\box60
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen158
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count297
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count298
+\dotsspace@=\muskip17
+\c@parentequation=\count299
+\dspbrk@lvl=\count300
+\tag@help=\toks22
+\row@=\count301
+\column@=\count302
+\maxfields@=\count303
+\andhelp@=\toks23
+\eqnshift@=\dimen159
+\alignsep@=\dimen160
+\tagshift@=\dimen161
+\tagwidth@=\dimen162
+\totwidth@=\dimen163
+\lineht@=\dimen164
+\@envbody=\toks24
+\multlinegap=\skip56
+\multlinetaggap=\skip57
+\mathdisplay@stack=\toks25
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks26
+\thm@bodyfont=\toks27
+\thm@headfont=\toks28
+\thm@notefont=\toks29
+\thm@headpunct=\toks30
+\thm@preskip=\skip58
+\thm@postskip=\skip59
+\thm@headsep=\skip60
+\dth@everypar=\toks31
+LaTeX Info: Redefining \qed on input line 273.
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen165
+\lightrulewidth=\dimen166
+\cmidrulewidth=\dimen167
+\belowrulesep=\dimen168
+\belowbottomsep=\dimen169
+\aboverulesep=\dimen170
+\abovetopsep=\dimen171
+\cmidrulesep=\dimen172
+\cmidrulekern=\dimen173
+\defaultaddspace=\dimen174
+\@cmidla=\count304
+\@cmidlb=\count305
+\@aboverulesep=\dimen175
+\@belowrulesep=\dimen176
+\@thisruleclass=\count306
+\@lastruleclass=\count307
+\@thisrulewidth=\dimen177
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.st
+y
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+ (C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count308
+\float@exts=\toks32
+\float@box=\box61
+\@float@everytoks=\toks33
+\@floatcapt=\box62
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks34
+\c@algorithm=\count309
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithmic.
+sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count310
+\c@ALC@line=\count311
+\c@ALC@rem=\count312
+\c@ALC@depth=\count313
+\ALC@tlm=\skip61
+\algorithmicindent=\skip62
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip63
+\multirow@cntb=\count314
+\multirow@dima=\skip64
+\bigstrutjot=\dimen178
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mathtools.sty
+Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count315
+\calc@Bcount=\count316
+\calc@Adimen=\dimen179
+\calc@Bdimen=\dimen180
+\calc@Askip=\skip65
+\calc@Bskip=\skip66
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count317
+\calc@Cskip=\skip67
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count318
+\l_MT_multwidth_dim=\dimen181
+\origjot=\skip68
+\l_MT_shortvdotswithinadjustabove_dim=\dimen182
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen183
+\l_MT_above_intertext_sep=\dimen184
+\l_MT_below_intertext_sep=\dimen185
+\l_MT_above_shortintertext_sep=\dimen186
+\l_MT_below_shortintertext_sep=\dimen187
+\xmathstrut@box=\box63
+\xmathstrut@dim=\dimen188
+)
+\c@theorem=\count319
+(manuscript_new.aux)
+\openout1 = `manuscript_new.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count320
+\scratchdimen=\dimen189
+\scratchbox=\box64
+\nofMPsegments=\count321
+\nofMParguments=\count322
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count323
+\MPscratchDim=\dimen190
+\MPnumerator=\count324
+\makeMPintoPDFobject=\count325
+\everyMPtoPDFconversion=\toks36
+)
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
+
+ (C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+
+
+(C:\Users\alini\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (4.85028pt too wide) in paragraph at lines 51--61
+\T1/cmr/m/n/12 mode gen-er-al-iza-tion to ar-bi-trar-ily many tool tiers. We th
+en in-tro-duce \T1/cmr/m/it/12 Context-
+ []
+
+[1
+
+{C:/Users/alini/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/alin
+i/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+[2
+
+
+]
+
+Package natbib Warning: Citation `yao2023react' on page 3 undefined on input li
+ne 93.
+
+
+Package natbib Warning: Citation `schick2023toolformer' on page 3 undefined on 
+input line 93.
+
+
+Package natbib Warning: Citation `10.1007/978-3-319-16086-3_16' on page 3 undef
+ined on input line 93.
+
+
+Overfull \hbox (4.17947pt too wide) in paragraph at lines 97--99
+\T1/cmr/bx/n/12 Novelty rel-a-tive to clas-sic ad-mis-sion con-trol. \T1/cmr/m/
+n/12 Clas-si-cal dead-line schedul-
+ []
+
+[3]
+
+Package natbib Warning: Citation `agrawal2024vidur' on page 4 undefined on inpu
+t line 124.
+
+[4]
+Overfull \hbox (20.75784pt too wide) in paragraph at lines 138--139
+\T1/cmr/m/n/12 a backlog-aware feasibility-gating pol-icy that se-lects among m
+ulti-resolution
+ []
+
+
+Overfull \hbox (31.28175pt too wide) in paragraph at lines 140--141
+[]\T1/cmr/bx/n/12 CADTR: \T1/cmr/m/n/12 We in-tro-duce Context-Aware Dy-namic T
+ool Res-o-lu-tion (CADTR),
+ []
+
+
+Package natbib Warning: Citation `nie2024aladdin' on page 5 undefined on input 
+line 151.
+
+[5{C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-sup
+er-ts1.enc}]
+
+Package natbib Warning: Citation `yao2023react' on page 6 undefined on input li
+ne 154.
+
+
+Package natbib Warning: Citation `schick2023toolformer' on page 6 undefined on 
+input line 154.
+
+
+Package natbib Warning: Citation `pars2025' on page 6 undefined on input line 1
+54.
+
+
+Package natbib Warning: Citation `258862' on page 6 undefined on input line 154
+.
+
+
+Package natbib Warning: Citation `agentxpu2025' on page 6 undefined on input li
+ne 159.
+
+
+Package natbib Warning: Citation `kwon2023pagedattention' on page 6 undefined o
+n input line 162.
+
+
+Package natbib Warning: Citation `agrawal2024sarathiserve' on page 6 undefined 
+on input line 165.
+
+[6]
+
+Package natbib Warning: Citation `patke2024qlm' on page 7 undefined on input li
+ne 168.
+
+
+Package natbib Warning: Citation `hong2025sola' on page 7 undefined on input li
+ne 168.
+
+
+Package natbib Warning: Citation `chen2025slosserve' on page 7 undefined on inp
+ut line 168.
+
+
+Package natbib Warning: Citation `jitserve2025' on page 7 undefined on input li
+ne 168.
+
+
+Package natbib Warning: Citation `tang2025scorpio' on page 7 undefined on input
+ line 168.
+
+
+Package natbib Warning: Citation `zhong2024distserve' on page 7 undefined on in
+put line 168.
+
+
+Package natbib Warning: Citation `sun2024llumnix' on page 7 undefined on input 
+line 171.
+
+
+Package natbib Warning: Citation `zhong2024distserve' on page 7 undefined on in
+put line 171.
+
+
+Package natbib Warning: Citation `wu2023fastserve' on page 7 undefined on input
+ line 171.
+
+
+Overfull \hbox (29.21516pt too wide) in paragraph at lines 171--172
+ \T1/cmr/m/it/12 Dy-namic reschedul-ing, dis-ag-gre-ga-tion, and dis-tributed s
+erv-ing.[] \T1/cmr/m/n/12 Dy-namic reschedul-
+ []
+
+
+Package natbib Warning: Citation `285173' on page 7 undefined on input line 174
+.
+
+
+Package natbib Warning: Citation `autellix2025' on page 7 undefined on input li
+ne 174.
+
+
+Package natbib Warning: Citation `astraea2025' on page 7 undefined on input lin
+e 174.
+
+
+Package natbib Warning: Citation `augserve2025' on page 7 undefined on input li
+ne 174.
+
+
+Package natbib Warning: Citation `chen2023frugalgpt' on page 7 undefined on inp
+ut line 177.
+
+
+Package natbib Warning: Citation `ong2024routellm' on page 7 undefined on input
+ line 177.
+
+
+Package natbib Warning: Citation `wang2025mixllm' on page 7 undefined on input 
+line 177.
+
+
+Package natbib Warning: Citation `liu1973scheduling' on page 7 undefined on inp
+ut line 180.
+
+
+Package natbib Warning: Citation `lopez2004edfmp' on page 7 undefined on input 
+line 180.
+
+
+Package natbib Warning: Citation `neely2010stochastic' on page 7 undefined on i
+nput line 180.
+
+
+Package natbib Warning: Citation `whitt2006fluid' on page 7 undefined on input 
+line 180.
+
+
+Package natbib Warning: Citation `ibrahim2009delay' on page 7 undefined on inpu
+t line 180.
+
+
+Package natbib Warning: Citation `abandonmentra' on page 7 undefined on input l
+ine 180.
+
+
+Package natbib Warning: Citation `lu1999case' on page 7 undefined on input line
+ 180.
+
+
+Package natbib Warning: Citation `lu2001feedback' on page 7 undefined on input 
+line 180.
+
+
+Package natbib Warning: Citation `hellerstein2004feedback' on page 7 undefined 
+on input line 180.
+
+[7] [8] [9]
+Overfull \hbox (1.45268pt too wide) in paragraph at lines 246--249
+\T1/cmr/m/n/12 es-ti-mate of ser-vice time (e.g., pre-dicted wait-ing/sojourn t
+ime), we use $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 m\OT1/cmr/m/n/12 ) [][]=
+ []
+
+[10] [11] [12] [13]
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 346.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 346.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 348.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 348.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 348.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 352.
+
+
+Overfull \hbox (10.59529pt too wide) in paragraph at lines 356--360
+[]\T1/cmr/m/n/12 Suppose FTC se-lects \T1/cmr/m/sc/12 slow \T1/cmr/m/n/12 at $\
+OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R; Q; ^^N; "\OT1/cmr/m/n/12 )$\T1/cmr/m/n/12 ,
+ so that $\OML/cmm/m/it/12 R \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 Q [] \OT1/cmr/m
+/n/12 + []([]) \OMS/cmsy/m/n/12 ^^T
+ []
+
+[14] [15]
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 458.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 458.
+
+[16] [17] [18]
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 576.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 576.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 577.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 577.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 577.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 577.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 583.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 584.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 599.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 599.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 614.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 614.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 614.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 614.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 614.
+
+[19]
+Overfull \hbox (3.10677pt too wide) detected at line 619
+\OMS/cmsy/m/n/12 S[] [][]\OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (\
+OML/cmm/m/it/12 R; Q; ^^N\OT1/cmr/m/n/12 ) : \OML/cmm/m/it/12 R \OT1/cmr/m/n/12
+ + \OML/cmm/m/it/12 Qa \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b \OMS/cmsy/m/n/12 ^^
+T \OML/cmm/m/it/12 ^^N\OMS/cmsy/m/n/12 g\OML/cmm/m/it/12 ;  \OMS/cmsy/m/n/12 S[
+] [][]\OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R; 
+Q; ^^N\OT1/cmr/m/n/12 ) : \OML/cmm/m/it/12 R \OT1/cmr/m/n/12 + \OML/cmm/m/it/12
+ Qb \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b \OMS/cmsy/m/n/12 ^^T \OML/cmm/m/it/12 
+^^N\OMS/cmsy/m/n/12 g\OML/cmm/m/it/12 :
+ []
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 624.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 624.
+
+[20]
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 678.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 678.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 683.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/scit' undefined
+(Font)              using `T1/cmr/m/scsl' instead on input line 683.
+
+
+Overfull \hbox (40.26028pt too wide) detected at line 704
+[] \OMS/cmsy/m/n/12 ^^@ [] \OT1/cmr/m/n/12 = []\OML/cmm/m/it/12 Q[]^^Z \OMS/cms
+y/m/n/12 ^^@ \OML/cmm/m/it/12 n[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 k\OT1/cmr/m/
+n/12 )[][][]([]) \OMS/cmsy/m/n/12 ^^@ []\OT1/cmr/m/n/12 ([])[] = \OML/cmm/m/it/
+12 Q[][]^^Z \OMS/cmsy/m/n/12 ^^@ [][][][]\OT1/cmr/m/n/12 ([]) \OMS/cmsy/m/n/12 
+^^@ []\OT1/cmr/m/n/12 ([])[]\OML/cmm/m/it/12 ;
+ []
+
+[21] [22]
+Overfull \hbox (3.06863pt too wide) in paragraph at lines 754--755
+ \T1/cmr/m/it/12 For-mal mech-a-nism.[] \T1/cmr/m/n/12 For re-quest $\OML/cmm/m
+/it/12 k$ \T1/cmr/m/n/12 with pri-or-ity class $\OML/cmm/m/it/12 p[] \OMS/cmsy/
+m/n/12 2 f[]\OML/cmm/m/it/12 ; []\OMS/cmsy/m/n/12 g$\T1/cmr/m/n/12 ,
+ []
+
+[23]
+Overfull \hbox (13.63177pt too wide) in paragraph at lines 796--797
+\T1/cmr/m/n/12 each pri-or-ity class, CADTR re-mains a mono-tone thresh-old pol
+-icy in $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 R[]; Q[]; ^^N[]\OT1/cmr/m/n/12 )$\T1
+/cmr/m/n/12 .
+ []
+
+[24] [25]
+Overfull \hbox (31.47546pt too wide) in paragraph at lines 852--863
+ [][] 
+ []
+
+[26] [27] [28] [29]
+Overfull \hbox (10.99934pt too wide) in paragraph at lines 947--957
+[]\T1/cmr/m/n/12 Empirical service-time traces are ob-tained from a ded-i-cated
+ trace-generation
+ []
+
+[30] [31] [32]
+<Results/CADTR/hero_graph_premium_mr.pdf, id=132, 499.16425pt x 315.89206pt>
+File: Results/CADTR/hero_graph_premium_mr.pdf Graphic file (type pdf)
+<use Results/CADTR/hero_graph_premium_mr.pdf>
+Package pdftex.def Info: Results/CADTR/hero_graph_premium_mr.pdf  used on input
+ line 1038.
+(pdftex.def)             Requested size: 370.49881pt x 234.46983pt.
+<Results/CADTR/shield_mechanism_slow_frac.pdf, id=133, 499.12912pt x 315.89206p
+t>
+File: Results/CADTR/shield_mechanism_slow_frac.pdf Graphic file (type pdf)
+<use Results/CADTR/shield_mechanism_slow_frac.pdf>
+Package pdftex.def Info: Results/CADTR/shield_mechanism_slow_frac.pdf  used on 
+input line 1052.
+(pdftex.def)             Requested size: 370.49881pt x 234.4843pt.
+<Results/CADTR/overall_utility.pdf, id=134, 499.50865pt x 315.89206pt>
+File: Results/CADTR/overall_utility.pdf Graphic file (type pdf)
+<use Results/CADTR/overall_utility.pdf>
+Package pdftex.def Info: Results/CADTR/overall_utility.pdf  used on input line 
+1064.
+(pdftex.def)             Requested size: 370.49881pt x 234.30595pt.
+ [33]
+<Results/CADTR/overall_miss_rate.pdf, id=138, 499.16425pt x 315.89206pt>
+File: Results/CADTR/overall_miss_rate.pdf Graphic file (type pdf)
+<use Results/CADTR/overall_miss_rate.pdf>
+Package pdftex.def Info: Results/CADTR/overall_miss_rate.pdf  used on input lin
+e 1076.
+(pdftex.def)             Requested size: 370.49881pt x 234.46983pt.
+
+Overfull \hbox (57.75768pt too wide) in paragraph at lines 1090--1116
+ [][] 
+ []
+
+[34 <./Results/CADTR/hero_graph_premium_mr.pdf>] [35 <./Results/CADTR/shield_me
+chanism_slow_frac.pdf>]
+<Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png, id=257, 800.5107pt x 299.
+9205pt>
+File: Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png Graphic file (type pn
+g)
+<use Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png>
+Package pdftex.def Info: Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png  u
+sed on input line 1140.
+(pdftex.def)             Requested size: 370.49881pt x 138.81172pt.
+ [36 <./Results/CADTR/overall_utility.pdf>] [37 <./Results/CADTR/overall_miss_r
+ate.pdf>] [38] [39 <./Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png>]
+Overfull \hbox (25.3276pt too wide) in paragraph at lines 1179--1180
+[]\T1/cmr/m/n/12 We in-tro-duced \T1/cmr/m/it/12 Firm-Deadline Tool Con-trol (F
+TC)\T1/cmr/m/n/12 , an arrival-epoch feasibility-
+ []
+
+[40]
+Overfull \hbox (20.36647pt too wide) in paragraph at lines 1193--1194
+[]\T1/cmr/m/n/12 The code to re-pro-duce the ex-per-i-ments and plots is avail-
+able in an anonymized
+ []
+
+(manuscript_new.bbl
+Underfull \hbox (badness 2088) in paragraph at lines 18--25
+\T1/cmr/m/n/12 moyer, N. Can-cedda, T. Scialom, Tool-former: Lan-guage mod-
+ []
+
+
+Underfull \hbox (badness 3701) in paragraph at lines 42--48
+[]\T1/cmr/m/n/12 C. Nie, R. Fon-seca, Z. Liu, Al-addin: Joint place-ment and
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 42--48
+\T1/cmr/m/n/12 scal-ing for SLO-aware LLM serv-ing (2024).  arXiv:2405.06856,
+ []
+
+[41]
+Underfull \hbox (badness 1067) in paragraph at lines 70--79
+\T1/cmr/m/n/12 large lan-guage model serv-ing with Page-dAt-ten-tion, in: Pro-c
+eed-
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 81--88
+\T1/cmr/m/n/12 off in llm in-fer-ence with sarathi-serve (2024).  arXiv:2403.02
+310,
+ []
+
+[42]
+Underfull \hbox (badness 1584) in paragraph at lines 130--137
+[]\T1/cmr/m/n/12 Y. Zhong, S. Liu, J. Chen, J. Hu, Y. Zhu, X. Liu, X. Jin,
+ []
+
+[43] [44])
+
+Package natbib Warning: There were undefined citations.
+
+[45] (manuscript_new.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-06>
+ ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5531 strings out of 467871
+ 84830 string characters out of 5418376
+ 494114 words of memory out of 5000000
+ 34307 multiletter control sequences out of 15000+600000
+ 654073 words of font info for 105 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 72i,12n,79p,988b,454s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmbx12.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmex10.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/alini/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/alini/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/alini/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/alini/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Use
+rs/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
+><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr12.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr7.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmss12.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/alini/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/alini/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/alini/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1000.pfb><C:/User
+s/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb>
+<C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfcc0
+800.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-sup
+er/sfcc1200.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/cm-super/sfrm0700.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/cm-super/sfrm0800.pfb><C:/Users/alini/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/cm-super/sfrm1000.pfb><C:/Users/alini/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/alini/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/cm-super/sfrm1728.pfb><C:/Users/alini/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsc0800.pfb><C:/Users/alini
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsc1200.pfb><C:/Use
+rs/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb
+><C:/Users/alini/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt
+1200.pfb>
+Output written on manuscript_new.pdf (45 pages, 780326 bytes).
+PDF statistics:
+ 527 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+
