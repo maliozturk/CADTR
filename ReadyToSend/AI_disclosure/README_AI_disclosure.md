@@ -34,6 +34,8 @@ prompts that you used."
 
 ## Independent verification
 
+The released code is archived at Zenodo with DOI
+[10.5281/zenodo.21936394](https://doi.org/10.5281/zenodo.21936394).
 The full development history (20 commits, 2026-01-18 to 2026-06-27) is
 public at <https://github.com/maliozturk/Deadline_Aware_Tool_Permissioning>.
 Every before/after state above corresponds to a commit hash there, and the
