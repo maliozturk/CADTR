@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.8)  28 JUN 2026 12:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.8)  14 AUG 2026 18:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -873,35 +873,36 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 File: Results/CADTR/hero_graph_premium_mr.pdf Graphic file (type pdf)
 <use Results/CADTR/hero_graph_premium_mr.pdf>
 Package pdftex.def Info: Results/CADTR/hero_graph_premium_mr.pdf  used on input
- line 977.
+ line 984.
 (pdftex.def)             Requested size: 448.42822pt x 283.78447pt.
 <Results/CADTR/shield_mechanism_slow_frac.pdf, id=95, 499.12912pt x 315.67334pt
 >
 File: Results/CADTR/shield_mechanism_slow_frac.pdf Graphic file (type pdf)
 <use Results/CADTR/shield_mechanism_slow_frac.pdf>
 Package pdftex.def Info: Results/CADTR/shield_mechanism_slow_frac.pdf  used on 
-input line 986.
+input line 993.
 (pdftex.def)             Requested size: 448.42822pt x 283.60724pt.
 <Results/CADTR/overall_utility.pdf, id=96, 499.50865pt x 315.7127pt>
 File: Results/CADTR/overall_utility.pdf Graphic file (type pdf)
 <use Results/CADTR/overall_utility.pdf>
 Package pdftex.def Info: Results/CADTR/overall_utility.pdf  used on input line 
-998.
+1005.
 (pdftex.def)             Requested size: 448.42822pt x 283.43065pt.
-<Results/CADTR/overall_miss_rate.pdf, id=97, 499.16425pt x 315.89206pt>
+ [25]
+<Results/CADTR/overall_miss_rate.pdf, id=101, 499.16425pt x 315.89206pt>
 File: Results/CADTR/overall_miss_rate.pdf Graphic file (type pdf)
 <use Results/CADTR/overall_miss_rate.pdf>
 Package pdftex.def Info: Results/CADTR/overall_miss_rate.pdf  used on input lin
-e 1007.
+e 1014.
 (pdftex.def)             Requested size: 448.42822pt x 283.78447pt.
- [25] [26 <./Results/CADTR/hero_graph_premium_mr.pdf>]
+ [26 <./Results/CADTR/hero_graph_premium_mr.pdf>]
 <Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png, id=158, 932.0421pt x 289.
 08pt>
 File: Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png Graphic file (type pn
 g)
 <use Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png>
 Package pdftex.def Info: Results/Trace_ECDF/ecdf_fast_vs_slow_multimodel.png  u
-sed on input line 1068.
+sed on input line 1075.
 (pdftex.def)             Requested size: 448.42822pt x 139.08322pt.
  [27 <./Results/CADTR/shield_mechanism_slow_frac.pdf>] [28 <./Results/CADTR/ove
 rall_utility.pdf> <./Results/CADTR/overall_miss_rate.pdf>] [29 <./Results/Trace
@@ -944,7 +945,7 @@ rs/alini/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Use
 rs/alini/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Us
 ers/alini/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Us
 ers/alini/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (34 pages, 523274 bytes).
+Output written on main.pdf (34 pages, 523897 bytes).
 PDF statistics:
  426 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
